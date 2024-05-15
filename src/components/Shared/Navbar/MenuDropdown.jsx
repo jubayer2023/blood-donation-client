@@ -2,19 +2,22 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
-import NavMenus from "./NavMenus";
-import MenuNavItem from "./MenuNavItem";
+import NavMenus from "./NavMenus/NavMenus";
+import MenuNavItem from "./NavMenus/MenuNavItem";
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
+  const {user} = useAuth();
+
+  // console.log(user);
 
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div className="hidden lg:block">
           <nav className=" flex justify-between items-center ">
-            <NavMenus></NavMenus>
+            {/* nav menus */}
+            <NavMenus user={user}></NavMenus>
           </nav>
         </div>
         <div
@@ -38,21 +41,23 @@ const MenuDropdown = () => {
       {/* dropdown box */}
       <div
         className={`absolute rounded-xl transition transform  ease-in-out  -z-10 shadow-inner shadow-slate-600 w-[40vw] md:w-[20vw] lg:w-[10vw] bg-neutral-50  overflow-hidden right-0 top-16  text-sm ${
-          isOpen ? "translate-y-0 delay-100  pb-2" : "-translate-y-80 delay-0"
+          isOpen
+            ? "translate-y-0 opacity-100 delay-100"
+            : "-translate-y-96 opacity-0 delay-300"
         }`}
       >
         <div className="flex flex-col cursor-pointer">
           {/* dropdwon menu item for samll devices */}
           <div className="lg:hidden">
-            <NavMenus drop={true}></NavMenus>
+            <NavMenus drop={true} user={user}></NavMenus>
           </div>
           {/* dropdwon menu item for large devices */}
           <div className="hidden lg:block ">
             <div className="flex flex-col ">
               <MenuNavItem
                 drop={true}
-                address={"/dashboard"}
-                label={"Dashboard"}
+                address={"/fundings"}
+                label={"Fundings"}
               ></MenuNavItem>
               <MenuNavItem
                 drop={true}
