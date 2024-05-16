@@ -93,7 +93,9 @@ const Contact = () => {
                 <span className="text-red-600 cursor-pointer transition ease-out hover:animate-spin">
                   <FaYoutube />
                 </span>
-                <Link className="text-red-600 text-sm font-semibold cursor-pointer underline">www.blodDonation.com</Link>
+                <Link className="text-red-600 text-sm font-semibold cursor-pointer underline">
+                  www.blodDonation.com
+                </Link>
               </div>
               <button
                 type="submit"
