@@ -40,7 +40,7 @@ const MenuDropdown = () => {
       </div>
       {/* dropdown box */}
       <div
-        className={`absolute rounded-xl transition transform  ease-in-out  -z-10 shadow-inner shadow-slate-600 w-[40vw] md:w-[20vw] lg:w-[10vw] bg-red-300  overflow-hidden right-0 top-[58px]  text-sm ${
+        className={`absolute rounded-xl transition transform  ease-in-out  -z-10 shadow-inner shadow-slate-600 w-[40vw] md:w-[20vw] lg:w-[10vw] bg-neutral-100  overflow-hidden right-0 top-[58px]  text-sm ${
           isOpen
             ? "translate-y-0 opacity-100 delay-100"
             : "-translate-y-96 opacity-0 delay-300"

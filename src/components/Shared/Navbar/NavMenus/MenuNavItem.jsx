@@ -8,11 +8,11 @@ const MenuNavItem = ({ drop, address, label }) => {
           isActive
             ? `text-neutral-100 font-bold px-4 py-2 transition  ease-in-out delay-300 border-b-2 border-neutral-100 ${
                 drop &&
-                "py-1  block border-b-[1px] w-full  bg-red-600 text-white "
+                "py-1  block border-b-[1px] border-gray-400 w-full  bg-red-600 text-white "
               }`
             : `px-4  font-semibold text-gray-800 ${
                 drop &&
-                "py-2   block border-b-[1px] overflow-hidden  w-full hover:bg-neutral-300 cursor-pointer "
+                "py-2 border-gray-400 block border-b-[1px] overflow-hidden  w-full hover:bg-neutral-300 cursor-pointer "
               }`
         }
         to={address}
