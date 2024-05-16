@@ -7,7 +7,7 @@ import MenuNavItem from "./NavMenus/MenuNavItem";
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   // console.log(user);
 
@@ -15,7 +15,7 @@ const MenuDropdown = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div className="hidden lg:block">
-          <nav className=" flex justify-between items-center ">
+          <nav className=" flex items-center ">
             {/* nav menus */}
             <NavMenus user={user}></NavMenus>
           </nav>
@@ -40,7 +40,7 @@ const MenuDropdown = () => {
       </div>
       {/* dropdown box */}
       <div
-        className={`absolute rounded-xl transition transform  ease-in-out  -z-10 shadow-inner shadow-slate-600 w-[40vw] md:w-[20vw] lg:w-[10vw] bg-neutral-50  overflow-hidden right-0 top-16  text-sm ${
+        className={`absolute rounded-xl transition transform  ease-in-out  -z-10 shadow-inner shadow-slate-600 w-[40vw] md:w-[20vw] lg:w-[10vw] bg-red-300  overflow-hidden right-0 top-[58px]  text-sm ${
           isOpen
             ? "translate-y-0 opacity-100 delay-100"
             : "-translate-y-96 opacity-0 delay-300"

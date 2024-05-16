@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "image": "https://i.ibb.co/bWpT0FS/banner3.jpg",
+        "btn_search": "Search donors",
+        "btn_join": "Join as a donor",
+        "title": "Empowerment through Donation",
+        "description": "Be the beacon of hope in someone's journey. Dive into the realm of compassion by joining our blood donation community. Together, let's turn moments of despair into rays of hope."
+    },
+    {
+        "id": 2,
+        "image": "https://i.ibb.co/3dHJrs5/banner4.jpg",
+        "btn_search": "Search donors",
+        "btn_join": "Join as a donor",
+        "title": "Unite for Life: Donate Blood",
+        "description": "Join hands with us to make a difference that echoes through generations. Every contribution counts in our mission to save lives. Start your journey of impact today."
+    },
+    {
+        "id": 3,
+        "image": "https://i.ibb.co/q1JV0gQ/banner6.jpg",
+        "btn_search": "Search donors",
+        "btn_join": "Join as a donor",
+        "title": "Strength in Giving: Blood Donors",
+        "description": "Discover the strength within you to transform lives. Become a part of our network of heroes, where each drop of blood is a testament to humanity's compassion. Together, let's spread the gift of life."
+    },
+    {
+        "id": 4,
+        "image": "https://i.ibb.co/1vjq6XD/banner7.jpg",
+        "btn_search": "Search donors",
+        "btn_join": "Join as a donor",
+        "title": "Courageous Acts: Blood Donations",
+        "description": "Embrace the courage to make a meaningful difference. Join our cause to provide the lifeline that someone desperately needs. Your simple act of donating blood can be the catalyst for miracles."
+    },
+    {
+        "id": 5,
+        "image": "https://i.ibb.co/yq0DHw9/banner8.jpg",
+        "btn_search": "Search donors",
+        "btn_join": "Join as a donor",
+        "title": "Hope in Action: Blood Donors Community",
+        "description": "Turn hope into reality by becoming a member of our blood donors community. Every step you take brings someone closer to a brighter tomorrow. Together, let's paint a canvas of compassion and healing."
+    },
+    {
+        "id": 6,
+        "image": "https://i.ibb.co/fHB0xN0/banner9.jpg",
+        "btn_search": "Search donors",
+        "btn_join": "Join as a donor",
+        "title": "Gift of Life: Join Our Donor Network",
+        "description": "Unlock the power of giving by becoming a part of our donor network. Your gift of life can be the lifeline for someone in need. Join us in spreading the invaluable gift of hope and resilience."
+    }
+]

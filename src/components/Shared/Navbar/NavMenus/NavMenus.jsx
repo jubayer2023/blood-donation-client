@@ -1,7 +1,7 @@
 import MenuNavItem from "./MenuNavItem";
 
 const NavMenus = ({ drop, user }) => {
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <MenuNavItem drop={drop} address={"/"} label={"Home"} />
@@ -21,11 +21,7 @@ const NavMenus = ({ drop, user }) => {
                 address={"/fundings"}
                 label={"Fundings"}
               />
-              <MenuNavItem
-                drop={drop}
-                address={"/logout"}
-                label={"Log out"}
-              />
+              <MenuNavItem drop={drop} address={"/logout"} label={"Log out"} />
             </>
           )}
         </>

@@ -6,8 +6,9 @@ const MenuNavItem = ({ drop, address, label }) => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? `text-red-700 font-bold px-4 py-2 transition  ease-in-out delay-300 border-b-2 border-rose-500 ${
-                drop && "py-1  block border-none w-full  bg-red-600 text-white "
+            ? `text-neutral-100 font-bold px-4 py-2 transition  ease-in-out delay-300 border-b-2 border-neutral-100 ${
+                drop &&
+                "py-1  block border-b-[1px] w-full  bg-red-600 text-white "
               }`
             : `px-4  font-semibold text-gray-800 ${
                 drop &&
