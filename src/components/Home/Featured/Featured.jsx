@@ -4,10 +4,10 @@ import FeatureItem from "./FeatureItem";
 import { featureData } from "./feature";
 
 const Featured = () => {
-  const center = true;
+  const feature = true;
   return (
     <div
-      className="my-12 bg-fixed"
+      className="my-20 bg-fixed"
       style={{
         backgroundImage: `url(${backImage})`,
         backgroundPosition: "center",
@@ -22,8 +22,8 @@ const Featured = () => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", opacity: 1 }}
       >
         <Heading
-          center={center}
-          title={"What You Should Khnow !"}
+          feature={feature}
+          title={"What You Should Khnow !"} 
           subtitle={
             "During apheresis, you are hooked up to a machine that collects and separates different parts of your blood. These blood components include red cells, plasma and platelets."
           }
