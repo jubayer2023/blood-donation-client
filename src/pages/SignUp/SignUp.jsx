@@ -1,22 +1,37 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import SelectComponent from "../../components/Shared/Form/SelectComponent/SelectComponent";
-import { bloodOptions } from "../../components/Shared/Form/SelectComponent/SelectOption";
-import { useState } from "react";
 import useDistricts from "../../hooks/useDistricts";
+import useUpazila from "../../hooks/useUpazila";
+import { bloodOptions } from "../../components/Shared/Form/SelectOptions/SelectOption";
+import { useState } from "react";
 
 const SignUp = () => {
-  const [bloodSelectOptons, setBlodSelectOptions] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
   const [districts] = useDistricts();
-  console.log(districts);
+  const [upazila] = useUpazila();
+  // sorting
+  const sortedDistricts = districts.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+  const sortedUpazila = upazila.sort((a, b) => a.name.localeCompare(b.name));
 
+  // hook from hook
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    // console.log(data.imageFile[0]);
+    if (data?.confirmPassword !== data?.password) {
+      return setPasswordError("Password does not matched !");
+    }
+
+    console.log(data);
+
+    setPasswordError(null);
+  };
+
   return (
     <div className=" min-h-screen bg-gradient-to-r from-rose-300 to-red-300 flex flex-col items-center justify-center">
       <div className="shadow-xl shadow-rose-700 w-4/5 md:w-3/4 lg:max-w-screen-md my-12  md:mx-auto p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -27,6 +42,7 @@ const SignUp = () => {
         {/* from here */}
         <div className=" w-full font-semibold text-sm ">
           <form
+            onSubmit={handleSubmit(onSubmit)}
             noValidate=""
             action=""
             className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -38,9 +54,11 @@ const SignUp = () => {
                   Name
                 </label>
                 <input
+                  {...register("name")}
                   type="text"
                   name="name"
-                  id="name"
+                  required
+                  defaultValue={"Hamid"}
                   placeholder="Enter Your Name Here"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
@@ -51,10 +69,10 @@ const SignUp = () => {
                   Your Image:
                 </label>
                 <input
-                  required
+                  {...register("image")}
                   type="file"
-                  id="image"
                   name="image"
+                  required
                   accept="image/*"
                   className="bg-gray-200 w-full py-[5px] group-hover:cursor-pointer  rounded-lg px-3"
                 />
@@ -67,14 +85,23 @@ const SignUp = () => {
                   Email address
                 </label>
                 <input
+                  {...register("email", {
+                    required: true,
+                    pattern: /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+                  })}
                   type="email"
                   name="email"
-                  id="email"
+                  defaultValue={"hamid123@gmail.com"}
                   required
                   placeholder="Enter Your Email Here"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
                 />
+                {errors.email?.type === "pattern" && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *Give a valid password !!!
+                  </span>
+                )}
               </div>
               <div className="w-full">
                 <div className="flex justify-between">
@@ -83,11 +110,22 @@ const SignUp = () => {
                   </label>
                 </div>
                 {/* blood options */}
-                <SelectComponent
-                  options={bloodOptions}
-                  selectedOption={bloodSelectOptons}
-                  setSelectedOption={setBlodSelectOptions}
-                ></SelectComponent>
+                <select
+                  defaultValue={"O+"}
+                  {...register("bloodGroup", { required: true })}
+                  className="w-full bg-gray-200 py-2"
+                >
+                  {bloodOptions.map((bloodGroup) => (
+                    <option key={bloodGroup.label} value={bloodGroup.value}>
+                      {bloodGroup.label}
+                    </option>
+                  ))}
+                </select>
+                {errors.bloodGroup?.type === "required" && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *Blood group is required !!!
+                  </span>
+                )}
               </div>
             </div>
             {/* third row */}
@@ -97,13 +135,22 @@ const SignUp = () => {
                   District
                 </label>
                 {/* district options */}
-                <select {...register} className="w-full bg-gray-200 py-2">
-                  {districts.map((district) => (
+                <select
+                  defaultValue={"Rangpur"}
+                  {...register("district", { required: true })}
+                  className="w-full bg-gray-200 py-2"
+                >
+                  {sortedDistricts.map((district) => (
                     <option key={district.id} value={district.name}>
                       {district.name}
                     </option>
                   ))}
                 </select>
+                {errors.district?.type === "required" && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *Select your district !!!
+                  </span>
+                )}
               </div>
               <div className="w-full">
                 <div className="flex justify-between">
@@ -111,17 +158,26 @@ const SignUp = () => {
                     Upazila
                   </label>
                 </div>
-                <input
-                  type="text"
-                  name="upazila"
-                  id="upazila"
-                  required
-                  placeholder="Upazila"
-                  className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
-                />
+                {/* upazila options */}
+                <select
+                  defaultValue={"Pirgasa"}
+                  {...register("upazila", { required: true })}
+                  className="w-full bg-gray-200 py-2"
+                >
+                  {sortedUpazila.map((eachUpazila) => (
+                    <option key={eachUpazila.id} value={eachUpazila.name}>
+                      {eachUpazila.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.upazila?.type === "required" && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *Select your upazila !!!
+                  </span>
+                )}
               </div>
             </div>
-            {/* second row */}
+            {/* fourth row */}
             <div className="flex flex-col md:flex-row items-center gap-0 md:gap-5">
               <div className="w-full">
                 <div className="flex justify-between">
@@ -130,14 +186,23 @@ const SignUp = () => {
                   </label>
                 </div>
                 <input
+                  defaultValue={123456}
+                  {...register("password", { required: true, minLength: 6 })}
                   type="password"
-                  name="password"
                   autoComplete="new-password"
-                  id="password"
-                  required
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
+                {errors.password?.type === "required" && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *Password is required !!!
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *Give at least 6 characters!!!
+                  </span>
+                )}
               </div>
               <div className="w-full">
                 <div className="flex justify-between">
@@ -146,14 +211,20 @@ const SignUp = () => {
                   </label>
                 </div>
                 <input
+                  {...register("confirmPassword", { required: true })}
                   type="password"
-                  name="password"
                   autoComplete="new-password"
                   id="confirmPassword"
                   required
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 />
+
+                {passwordError && (
+                  <span className="text-red-600 font-semibold text-xs">
+                    *{passwordError}
+                  </span>
+                )}
               </div>
             </div>
 

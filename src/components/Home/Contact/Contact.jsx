@@ -97,12 +97,12 @@ const Contact = () => {
                   www.blodDonation.com
                 </Link>
               </div>
-              <button
+              <Link
                 type="submit"
-                className="bg-rose-300 w-full rounded-md py-3 text-white"
+                className="bg-rose-300 w-full rounded-md py-3 text-white text-center"
               >
                 Continue
-              </button>
+              </Link>
             </div>
           </form>
         </div>

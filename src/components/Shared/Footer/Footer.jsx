@@ -15,7 +15,7 @@ const Footer = () => {
                 className="w-16 h-16  rounded-full"
               />
               <h3 className="text-xl md:text-2xl font-bold text-white">
-                Blood Donation
+                Blood Donations
               </h3>
             </div>
             <ul className="flex flex-wrap items-center gap-y-2 gap-x-8 text-white ">
