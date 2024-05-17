@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import DonationDetails from "../pages/DonationDetails/DonationDetails";
+import Funding from "../pages/Funding/Funding";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,8 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       { path: "/room/:id", element: <DonationDetails /> },
+      { path: "/fundings", element: <Funding /> },
+      
     ],
   },
   { path: "/login", element: <Login /> },

@@ -2,8 +2,8 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
-import NavMenus from "./NavMenus/NavMenus";
-import MenuNavItem from "./NavMenus/MenuNavItem";
+import MenuNavItems from "./NavMenus/MenuNavItem";
+import SmallDropMenu from "./NavMenus/SmallDropMenu";
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ const MenuDropdown = () => {
         <div className="hidden lg:block">
           <nav className=" flex items-center ">
             {/* nav menus */}
-            <NavMenus user={user}></NavMenus>
+            <MenuNavItems></MenuNavItems>
           </nav>
         </div>
         <div
@@ -46,25 +46,17 @@ const MenuDropdown = () => {
             : "-translate-y-96 opacity-0 delay-300"
         }`}
       >
-        <div className="flex flex-col cursor-pointer">
-          {/* dropdwon menu item for samll devices */}
-          <div className="lg:hidden">
-            <NavMenus drop={true} user={user}></NavMenus>
+        {/* dropdwon menu item for samll devices */}
+        <div className="lg:hidden">
+          <div className="flex flex-col ">
+            <MenuNavItems user={user}></MenuNavItems>
+            {user && <SmallDropMenu></SmallDropMenu>}
           </div>
-          {/* dropdwon menu item for large devices */}
-          <div className="hidden lg:block ">
-            <div className="flex flex-col ">
-              <MenuNavItem
-                drop={true}
-                address={"/fundings"}
-                label={"Fundings"}
-              ></MenuNavItem>
-              <MenuNavItem
-                drop={true}
-                address={"/logout"}
-                label={"Log out"}
-              ></MenuNavItem>
-            </div>
+        </div>
+        {/* dropdwon menu item for large devices */}
+        <div className="hidden lg:block ">
+          <div className="flex flex-col ">
+            <SmallDropMenu></SmallDropMenu>
           </div>
         </div>
       </div>

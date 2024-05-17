@@ -4,11 +4,14 @@ import useDistricts from "../../hooks/useDistricts";
 import useUpazila from "../../hooks/useUpazila";
 import { bloodOptions } from "../../components/Shared/Form/SelectOptions/SelectOption";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [districts] = useDistricts();
   const [upazila] = useUpazila();
+  const { createUser } = useAuth();
   // sorting
   const sortedDistricts = districts.sort((a, b) =>
     a.name.localeCompare(b.name)
@@ -21,11 +24,14 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // console.log(data.imageFile[0]);
     if (data?.confirmPassword !== data?.password) {
       return setPasswordError("Password does not matched !");
     }
+    // create user
+    await createUser(data?.email, data?.password);
+    toast.success("User created successfully");
 
     console.log(data);
 
