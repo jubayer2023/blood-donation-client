@@ -10,7 +10,7 @@ const Loader = ({ smallHeight }) => {
       justify-center 
       items-center `}
     >
-      <GridLoader size={100} color="red" />
+      <GridLoader size={20} color="red" />
     </div>
   );
 };

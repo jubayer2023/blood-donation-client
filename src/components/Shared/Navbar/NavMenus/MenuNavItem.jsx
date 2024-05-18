@@ -22,7 +22,7 @@ const MenuNavItems = () => {
             ? "bg-red-600 font-bold px-4 py-1 text-white rounded-sm transition ease-out"
             : "px-4 py-1 font-semibold text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 "
         }
-        to={"/donationRequests"}
+        to={"/donation-requests"}
       >
         Donation requests
       </NavLink>

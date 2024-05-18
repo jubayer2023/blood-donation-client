@@ -4,7 +4,7 @@ import siteLogo from "../../../assets/images/blood-logo.jpg";
 
 const Footer = () => {
   return (
-    <div className="bg-red-400 mt-20">
+    <div className="bg-slate-500 mt-20">
       <Container>
         <footer className="w-full 800 p-8">
           <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12  text-center md:justify-between">
@@ -24,7 +24,7 @@ const Footer = () => {
                   as="a"
                   href="#"
                   color="blue-gray"
-                  className="font-normal transition-colors hover:text-teal-800 focus:text-neutral-700"
+                  className="font-normal transition-colors hover:text-red-800 focus:text-amber-500"
                 >
                   About Us
                 </Typography>
@@ -34,7 +34,7 @@ const Footer = () => {
                   as="a"
                   href="#"
                   color="blue-gray"
-                  className="font-normal transition-colors hover:text-teal-800 focus:text-neutral-700"
+                  className="font-normal transition-colors hover:text-red-800 focus:text-amber-500"
                 >
                   License
                 </Typography>
@@ -44,7 +44,7 @@ const Footer = () => {
                   as="a"
                   href="#"
                   color="blue-gray"
-                  className="font-normal transition-colors hover:text-teal-800 focus:text-neutral-700"
+                  className="font-normal transition-colors hover:text-red-800 focus:text-amber-500"
                 >
                   Contribute
                 </Typography>
@@ -54,7 +54,7 @@ const Footer = () => {
                   as="a"
                   href="#"
                   color="blue-gray"
-                  className="font-normal transition-colors hover:text-teal-800 focus:text-neutral-700"
+                  className="font-normal transition-colors hover:text-red-800 focus:text-amber-500"
                 >
                   Contact Us
                 </Typography>
@@ -62,7 +62,7 @@ const Footer = () => {
             </ul>
           </div>
           <hr className="my-8 border-blue-gray-50" />
-          <Typography color="blue-gray" className="text-center font-normal">
+          <Typography color="blue-gray" className="text-center font-normal text-white">
             &copy; 2024 Md. Jubayer Sarker. All Rights Reserved!
           </Typography>
         </footer>

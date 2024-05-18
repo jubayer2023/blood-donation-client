@@ -1,5 +1,6 @@
 [
     {
+        "id": "1",
         "recipient_name": "John Doe",
         "recipient_district": "Dhaka",
         "recipient_upazila": "Tejgaon",
@@ -7,10 +8,12 @@
         "full_address_line": "Zahir Raihan Rd, Dhaka",
         "donation_date": "2024-06-15",
         "donation_time": "10:00 AM",
-        "request_message": "The patient needs a transfusion due to severe anemia.",
+        "blood_group": "A+",
+        "request_message": "The patient needs a transfusion due to severe anemia. Immediate blood donation is crucial to stabilize the patient's condition and ensure their recovery. Without the transfusion, the patient's health will deteriorate rapidly, making it difficult for doctors to manage their condition effectively. Your timely help can save a life.",
         "donation_status": "pending"
     },
     {
+        "id": "2",
         "recipient_name": "Jane Smith",
         "recipient_district": "Chittagong",
         "recipient_upazila": "Pahartali",
@@ -18,10 +21,12 @@
         "full_address_line": "Chittagong College Rd, Chittagong",
         "donation_date": "2024-06-16",
         "donation_time": "02:00 PM",
-        "request_message": "Urgent requirement for surgery scheduled tomorrow.",
+        "blood_group": "O-",
+        "request_message": "Urgent blood donation is required for a surgery scheduled tomorrow. Timely blood donation is essential to ensure the success of the surgery and the patient's survival. The patient’s condition is critical, and having the required blood on time will significantly increase the chances of a successful operation and quick recovery.",
         "donation_status": "pending"
     },
     {
+        "id": "3",
         "recipient_name": "Ahmed Khan",
         "recipient_district": "Khulna",
         "recipient_upazila": "Batiaghata",
@@ -29,7 +34,47 @@
         "full_address_line": "Sher-E-Bangla Rd, Khulna",
         "donation_date": "2024-06-17",
         "donation_time": "09:00 AM",
-        "request_message": "Patient needs blood due to severe blood loss from an accident.",
+        "blood_group": "B+",
+        "request_message": "The patient needs an immediate blood transfusion due to severe blood loss from an accident. Prompt blood donation is critical to save the patient's life and aid in their recovery. Without the transfusion, the patient's condition may worsen, leading to further complications. Your contribution can make a significant difference.",
+        "donation_status": "pending"
+    },
+    {
+        "id": "4",
+        "recipient_name": "Javed Khan",
+        "recipient_district": "Rangpur",
+        "recipient_upazila": "Pirganj",
+        "hospital_name": "Rangpur Medical College Hospital",
+        "full_address_line": "Rangpur Medical College Rd, Rangpur",
+        "donation_date": "2024-08-17",
+        "donation_time": "10:00 AM",
+        "blood_group": "AB-",
+        "request_message": "The patient urgently needs blood due to severe blood loss from an accident. Immediate blood donation is vital to stabilize the patient and facilitate their recovery process. The patient’s situation is precarious, and a timely transfusion is necessary to prevent further health deterioration. Your help is urgently needed to save a life.",
+        "donation_status": "pending"
+    },
+    {
+        "id": "5",
+        "recipient_name": "Maryam Begum",
+        "recipient_district": "Sylhet",
+        "recipient_upazila": "Balaganj",
+        "hospital_name": "Sylhet MAG Osmani Medical College Hospital",
+        "full_address_line": "Medical College Rd, Sylhet",
+        "donation_date": "2024-06-18",
+        "donation_time": "11:00 AM",
+        "blood_group": "O+",
+        "request_message": "The patient is in critical need of a blood transfusion due to complications during childbirth. Timely blood donation is crucial to prevent severe health risks. The medical team is prepared, but the transfusion is needed urgently to ensure both mother and child's safety and recovery.",
+        "donation_status": "pending"
+    },
+    {
+        "id": "6",
+        "recipient_name": "Rahim Uddin",
+        "recipient_district": "Barisal",
+        "recipient_upazila": "Babuganj",
+        "hospital_name": "Barisal Sher-E-Bangla Medical College Hospital",
+        "full_address_line": "Hospital Rd, Barisal",
+        "donation_date": "2024-06-19",
+        "donation_time": "03:00 PM",
+        "blood_group": "A-",
+        "request_message": "The patient requires an urgent blood transfusion due to severe injuries sustained in a car accident. Immediate blood donation is essential to stabilize the patient's condition and prevent further health complications. Your prompt response can significantly impact the patient's chance of recovery and survival.",
         "donation_status": "pending"
     }
 ]
