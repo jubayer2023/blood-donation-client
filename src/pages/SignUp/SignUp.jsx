@@ -6,9 +6,9 @@ import { bloodOptions } from "../../components/Shared/Form/SelectOptions/SelectO
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { imgUploadApi, saveUsers } from "../../api/auth";
+import { imgUploadApi, saveUsers, setCookie } from "../../api/auth";
 // icon
-import { FaArrowsSpin } from "react-icons/fa6";
+import { IoSyncCircleOutline } from "react-icons/io5";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState(null);
@@ -47,13 +47,13 @@ const SignUp = () => {
       const image_live_link = imageLiveData.data.display_url;
       // console.log(image_live_link);
 
-      // create user
+      // 1. create user
       await createUser(data?.email, data?.password);
 
-      // then update user
+      // 2. then update user
       await updateUserProfile(data?.name, image_live_link);
 
-      // save to data base your user info
+      // 3. save to data base your user info
       const userInfo = {
         name: data?.name,
         email: data?.email,
@@ -63,9 +63,11 @@ const SignUp = () => {
         role: "donor",
         status: "active",
       };
-      // console.log(userInfo);
-
+      //  console.log(userInfo);
       await saveUsers(userInfo, data?.email);
+
+      //4. set cookie
+      await setCookie(data?.email);
 
       toast.success("User created successfully");
 
@@ -282,7 +284,7 @@ const SignUp = () => {
                 className="bg-rose-500 w-full rounded-md py-3 font-semibold text-white flex justify-center items-center "
               >
                 {loading ? (
-                  <FaArrowsSpin className="animate-spin text-3xl text-white" />
+                  <IoSyncCircleOutline className="animate-spin text-3xl text-white" />
                 ) : (
                   "Continue"
                 )}

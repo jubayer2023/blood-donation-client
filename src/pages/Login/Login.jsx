@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { FaArrowsSpin } from "react-icons/fa6";
 import { IoSyncCircleOutline } from "react-icons/io5";
 import { useState } from "react";
+import { setCookie } from "../../api/auth";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,8 @@ const Login = () => {
       await signIn(data?.email, data?.password);
       toast.success("User logged in successfully");
 
+      // set cookie
+      await setCookie(data?.email);
       // console.log(data);
       setLoading(false);
       navigate(from, { replace: true });
