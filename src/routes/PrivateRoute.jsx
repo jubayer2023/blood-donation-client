@@ -1,4 +1,4 @@
-import { Navigate, useLocation, } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Loader from "../components/Shared/Loader";
 
@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
     return <Loader></Loader>;
   }
 
-  if (!user || user?.email) {
+  if (!user) {
     return (
       <Navigate to={"/login"} state={{ from: loccation }} replace></Navigate>
     );

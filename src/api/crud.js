@@ -1,6 +1,6 @@
 import { axiosPublic, axiosSecure } from "./axiosBaseURL";
 // get all pending requests
-export const getAllPendingRequests = async () => {
+export const getAllRequests = async () => {
     const { data } = await axiosPublic.get('/requests');
     return data;
 };

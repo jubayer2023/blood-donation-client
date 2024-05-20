@@ -9,8 +9,8 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import DonorHome from "../pages/Dashboard/Donor/DonorHome";
 import DonationRequests from "../pages/DonationRequests/DonationRequests";
 import RequesDetails from "../pages/RequesDetails/RequesDetails";
-import { axiosSecure } from "../api/axiosBaseURL";
 import { getRequestDetail } from "../api/crud";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +25,11 @@ export const router = createBrowserRouter([
       { path: "/donation-requests", element: <DonationRequests /> },
       {
         path: "/donation-details/:id",
-        element: <RequesDetails />,
+        element: (
+          <PrivateRoute>
+            <RequesDetails />
+          </PrivateRoute>
+        ),
         loader: async ({ params }) =>
           // await axiosSecure.get(`/request-details/${params.id}`),
           await getRequestDetail(params.id),

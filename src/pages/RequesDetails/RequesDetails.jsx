@@ -1,28 +1,20 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Container from "../../components/Shared/Container";
 import { Helmet } from "react-helmet-async";
 import Heading from "../../components/Shared/Heading";
-import { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa6";
 import Button from "../../components/Button/Button";
+import DonateConfirm from "../../components/Shared/Modal/DonateConfirm";
 
 const RequesDetails = () => {
-  // const { id } = useParams();
-  // const [details, setDetails] = useState({});
   const details = useLoaderData();
 
-  console.log(details);
+  // console.log(details);
 
-  // useEffect(() => {
-  //   fetch("../../../public/request.json")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // console.log(data);
-  //       const findDetails = data.find((item) => item.id === id);
-  //       setDetails(findDetails);
-  //     });
-  // }, [id]);
+  const handleDonate = () => {
+    return <DonateConfirm></DonateConfirm>;
+  };
 
   return (
     <Container>
@@ -76,8 +68,9 @@ const RequesDetails = () => {
               <p>Message: {details.request_message}</p>
             </div>
 
+            {/* TO DO : DONATE  TASK */}
             <div className="my-4">
-              <Button label={"CONFIRM"}></Button>
+              <Button onClick={handleDonate} label={"DONATE"}></Button>
             </div>
           </div>
         </div>

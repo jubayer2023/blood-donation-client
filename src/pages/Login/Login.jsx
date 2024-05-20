@@ -1,21 +1,32 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import { FaArrowsSpin } from "react-icons/fa6";
+import { IoSyncCircleOutline } from "react-icons/io5";
+import { useState } from "react";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const { signIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
+  // console.log(from);
+
   const { register, handleSubmit } = useForm();
 
-  const { signIn } = useAuth();
   const onSubmit = async (data) => {
+    setLoading(true);
     // create user
     try {
       await signIn(data?.email, data?.password);
       toast.success("User logged in successfully");
 
-      console.log(data);
-      navigate("/");
+      // console.log(data);
+      setLoading(false);
+      navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
       toast.error("Error from Login function");
@@ -75,9 +86,13 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="bg-rose-500 w-full rounded-md py-3 text-white"
+              className="bg-rose-500 w-full rounded-md py-3 font-semibold text-white flex justify-center items-center"
             >
-              Continue
+              {loading ? (
+                <IoSyncCircleOutline className="animate-spin text-white text-3xl" />
+              ) : (
+                "Continue"
+              )}
             </button>
           </div>
         </form>

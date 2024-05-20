@@ -21,11 +21,11 @@ const DonationRequests = () => {
           center={true}
           subtitle={"Wellcome to blodd donations site !!!"}
         ></Heading>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5  mt-10 ">
           {pendingRequests.map((item) => (
             <div
               key={item._id}
-              className="flex justify-between p-7 lg:p-10  bg-teal-600 items-center border-[1px] border-slate-200"
+              className="flex flex-col md:flex-row justify-between p-7 lg:p-10  bg-teal-600 md:items-center  border-[1px] border-amber-100 shadow-teal-800 shadow-2xl rounded-b-xl"
             >
               <div className="space-y-2 text-neutral-100">
                 <h3 className=" font-semibold text-xl">
@@ -39,8 +39,8 @@ const DonationRequests = () => {
                   <span> time: {item.donation_time}</span>
                 </p>
               </div>
-              <Link to={`/donation-details/${item._id}`}>
-                <button className="btn btn-sm btn-outline rounded-md bg-neutral-50 text-amber-600 hover:text-amber-600 hover:bg-slate-800">
+              <Link to={`/donation-details/${item._id}`} className="mt-5 md:mt-0">
+                <button className="btn btn-sm btn-outline rounded-md bg-neutral-50 text-amber-600 hover:text-amber-600 hover:bg-slate-800 ">
                   View Details
                 </button>
               </Link>

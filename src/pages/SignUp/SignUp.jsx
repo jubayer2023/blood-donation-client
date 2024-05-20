@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useDistricts from "../../hooks/useDistricts";
 import useUpazila from "../../hooks/useUpazila";
@@ -6,12 +6,21 @@ import { bloodOptions } from "../../components/Shared/Form/SelectOptions/SelectO
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { imgUploadApi, saveUsers } from "../../api/auth";
+// icon
+import { FaArrowsSpin } from "react-icons/fa6";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [districts] = useDistricts();
   const [upazila] = useUpazila();
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location?.state?.from?.pathname || "/";
+
   // sorting
   const sortedDistricts = districts.sort((a, b) =>
     a.name.localeCompare(b.name)
@@ -25,17 +34,50 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
+    setLoading(true);
     // console.log(data.imageFile[0]);
     if (data?.confirmPassword !== data?.password) {
       return setPasswordError("Password does not matched !");
     }
-    // create user
-    await createUser(data?.email, data?.password);
-    toast.success("User created successfully");
+    // console.log(data);
 
-    console.log(data);
+    try {
+      // first post the image for creat live link
+      const imageLiveData = await imgUploadApi(data?.image[0]);
+      const image_live_link = imageLiveData.data.display_url;
+      // console.log(image_live_link);
 
-    setPasswordError(null);
+      // create user
+      await createUser(data?.email, data?.password);
+
+      // then update user
+      await updateUserProfile(data?.name, image_live_link);
+
+      // save to data base your user info
+      const userInfo = {
+        name: data?.name,
+        email: data?.email,
+        blood_group: data?.bloodGroup,
+        district: data?.district,
+        upazila: data?.upazila,
+        role: "donor",
+        status: "active",
+      };
+      // console.log(userInfo);
+
+      await saveUsers(userInfo, data?.email);
+
+      toast.success("User created successfully");
+
+      setPasswordError(null);
+      // setLoading state as false
+      setLoading(false);
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.log("ERROR FROM SIGNUP : ", error);
+      toast.error("ERROR FROM SIGNUP");
+      setPasswordError(null);
+    }
   };
 
   return (
@@ -237,9 +279,13 @@ const SignUp = () => {
             <div>
               <button
                 type="submit"
-                className="bg-rose-500 w-full rounded-md py-3 text-white"
+                className="bg-rose-500 w-full rounded-md py-3 font-semibold text-white flex justify-center items-center "
               >
-                Continue
+                {loading ? (
+                  <FaArrowsSpin className="animate-spin text-3xl text-white" />
+                ) : (
+                  "Continue"
+                )}
               </button>
             </div>
           </form>
