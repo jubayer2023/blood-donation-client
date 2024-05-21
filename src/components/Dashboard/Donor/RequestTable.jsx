@@ -4,7 +4,7 @@ const RequestTable = () => {
   return (
     <div className=" ">
       <div className="py-4">
-        <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+        <div className="overflow-x-auto py-4">
           <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
             <table className="min-w-full leading-normal">
               <thead>
