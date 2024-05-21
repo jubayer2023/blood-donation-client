@@ -1,9 +1,17 @@
+import useAuth from "../../../hooks/useAuth";
+import DashHeading from "../DashHeading";
+
 const DonorHome = () => {
+  const { user } = useAuth();
   return (
-    <div className="min-h-screen">
-      <h3 className="text-amber-500 text-3xl text-center">
-        Wllcome to Donor Home !!!
-      </h3>
+    <div className="">
+      <DashHeading title={`Wellcome to donor home`} name={user?.displayName} />
+      {/* <p className="text-center text-sm font-sans font-semibold text-gray-300">
+        Your three recent donation requests !
+      </p> */}
+      <div className="bg-neutral-50 p-5">
+        
+      </div>
     </div>
   );
 };

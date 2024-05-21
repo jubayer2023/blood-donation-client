@@ -78,6 +78,7 @@ const SignUp = () => {
     } catch (error) {
       console.log("ERROR FROM SIGNUP : ", error);
       toast.error("ERROR FROM SIGNUP");
+      setLoading(false);
       setPasswordError(null);
     }
   };

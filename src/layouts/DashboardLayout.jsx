@@ -8,7 +8,7 @@ const DashboardLayout = () => {
       <Sidebar></Sidebar>
       <div className="flex-1  lg:ml-64">
         {/* outlet */}
-        <div className="p-5">
+        <div className=" bg-slate-800 p-5 lg:mx-1 min-h-screen">
           <Outlet></Outlet>
         </div>
       </div>

@@ -33,6 +33,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error("Error from Login function");
+      setLoading(false);
     }
   };
 

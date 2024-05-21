@@ -30,8 +30,8 @@ const Sidebar = () => {
   };
   return (
     <>
-      {/* Small Screen Navbar */}
-      <div className="bg-rose-300 text-gray-800 flex justify-between lg:hidden">
+      {/* Small and Medium Screen Navbar */}
+      <div className="bg-slate-300 text-gray-800 flex justify-between lg:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             {/* logo */}
@@ -54,7 +54,7 @@ const Sidebar = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-10 lg:fixed flex flex-col justify-between overflow-x-hidden bg-rose-300 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform shadow-xl shadow-neutral-50 ${
+        className={`z-10 lg:fixed flex flex-col justify-between overflow-x-hidden bg-slate-600 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform shadow-inner shadow-neutral-500 ${
           isActive && "-translate-x-full"
         }  lg:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -82,7 +82,7 @@ const Sidebar = () => {
             </nav>
           </div>
         </div>
-
+        {/* profile and logout button */}
         <div>
           <hr />
 
@@ -93,7 +93,7 @@ const Sidebar = () => {
           />
           <button
             onClick={logOut}
-            className="flex w-full items-center px-4 py-2 mt-5 bg-neutral-300 hover:bg-red-600   hover:text-neutral-50 transition-colors duration-300 transform"
+            className="flex w-full items-center px-4 py-2 mt-3 rounded-sm bg-neutral-300 hover:bg-red-600   hover:text-neutral-50 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />
 

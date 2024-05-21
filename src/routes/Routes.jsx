@@ -11,6 +11,7 @@ import RequesDetails from "../pages/RequesDetails/RequesDetails";
 import { getRequestDetail } from "../api/crud";
 import PrivateRoute from "./PrivateRoute";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import MyRequests from "../pages/Dashboard/Donor/MyRequests";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,15 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardHome />,
+      },
+      // donor rooutes
+      {
+        path: "my-requests",
+        element: (
+          <PrivateRoute>
+            <MyRequests />
+          </PrivateRoute>
+        ),
       },
     ],
   },
