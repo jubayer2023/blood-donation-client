@@ -1,25 +1,29 @@
 import { useState } from "react";
 // Components
-// import MenuItem from "./MenuItem";
-// import ToggleBtn from "../../Button/ToggleBtn";
 import Logo from "../../Shared/Logo/Logo";
+import MenuItem from "./MenuItem";
+import AdminMenu from "./Menu/AdminMenu";
+import VolunteerMenu from "./Menu/VolunteerMenu";
+import DonorMenu from "./Menu/DonorMenu";
 
 // Icons
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
-import { BsGraphUp } from "react-icons/bs";
+import { FaHome } from "react-icons/fa";
+import { FaRegWindowClose } from "react-icons/fa";
+
+// import { BsGraphUp } from "react-icons/bs";
 import useAuth from "../../../hooks/useAuth";
+import useRole from "../../../hooks/useRole";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
-  const [toggle, setToggle] = useState(false);
   const [isActive, setActive] = useState(false);
+  const [role] = useRole();
 
-  //   For guest/host menu item toggle button
-  const toggleHandler = (event) => {
-    // setToggle(event.target.checked);
-  };
+  // console.log(role);
+
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -27,7 +31,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar */}
-      <div className="bg-rose-300 text-gray-800 flex justify-between lg:hidden border-4 border-yellow-300">
+      <div className="bg-rose-300 text-gray-800 flex justify-between lg:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             {/* logo */}
@@ -37,20 +41,26 @@ const Sidebar = () => {
 
         <button
           onClick={handleToggle}
-          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+          className="mobile-menu-button p-4 focus:outline-none focus:bg-neutral-300 focus:text-green-500"
         >
-          <AiOutlineBars className="h-5 w-5" />
+          {isActive ? (
+            <AiOutlineBars className=" animate-pulse  text-3xl" />
+          ) : (
+            <span className="animate-pulse  text-3xl">
+              <FaRegWindowClose />
+            </span>
+          )}
         </button>
       </div>
       {/* Sidebar */}
       <div
-        className={`border-4 border-green-700 z-10 lg:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 lg:fixed flex flex-col justify-between overflow-x-hidden bg-rose-300 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform shadow-xl shadow-neutral-50 ${
           isActive && "-translate-x-full"
         }  lg:translate-x-0  transition duration-200 ease-in-out`}
       >
         <div>
           <div>
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
+            <div className="w-full flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto">
               {/* logo */}
               <Logo />
             </div>
@@ -58,16 +68,17 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
-            {/* If a user is host */}
-            {/* <ToggleBtn toggleHandler={toggleHandler} /> */}
             <nav>
-              {/* <MenuItem
-                icon={BsGraphUp}
-                label="Statistics"
+              <MenuItem
+                icon={FaHome}
+                label={role + " " + "home"}
                 address="/dashboard"
-              /> */}
+              />
 
               {/* Menu Items */}
+              {role === "admin" && <AdminMenu />}
+              {role === "volunteer" && <VolunteerMenu />}
+              {role === "donor" && <DonorMenu />}
             </nav>
           </div>
         </div>
@@ -75,14 +86,14 @@ const Sidebar = () => {
         <div>
           <hr />
 
-          {/* <MenuItem
+          <MenuItem
             icon={FcSettings}
             label="Profile"
             address="/dashboard/profile"
-          /> */}
+          />
           <button
             onClick={logOut}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+            className="flex w-full items-center px-4 py-2 mt-5 bg-neutral-300 hover:bg-red-600   hover:text-neutral-50 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />
 

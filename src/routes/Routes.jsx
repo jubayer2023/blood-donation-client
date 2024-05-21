@@ -10,7 +10,7 @@ import DonationRequests from "../pages/DonationRequests/DonationRequests";
 import RequesDetails from "../pages/RequesDetails/RequesDetails";
 import { getRequestDetail } from "../api/crud";
 import PrivateRoute from "./PrivateRoute";
-import DonorHome from "../pages/Dashboard/Donor/DonorHome/DonorHome";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -41,12 +41,16 @@ export const router = createBrowserRouter([
   { path: "/signup", element: <SignUp /> },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     // errorElement: <ErrorPage />,
     children: [
       {
         path: "/dashboard",
-        element: <DonorHome></DonorHome>,
+        element: <DashboardHome />,
       },
     ],
   },

@@ -6,7 +6,7 @@ const DashboardLayout = () => {
     <div className="relative min-h-screen lg:flex">
       {/* Sidebar Component */}
       <Sidebar></Sidebar>
-      <div className="flex-1  lg:ml-64 border-4 border-red-600">
+      <div className="flex-1  lg:ml-64">
         {/* outlet */}
         <div className="p-5">
           <Outlet></Outlet>
