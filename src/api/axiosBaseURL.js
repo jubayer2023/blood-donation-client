@@ -20,7 +20,7 @@ axiosSecure.interceptors.response.use((res) => {
         window.location.replace('/login');
     }
     return Promise.reject(error);
-})
+});
 
 
 

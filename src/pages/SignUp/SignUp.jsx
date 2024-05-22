@@ -164,7 +164,7 @@ const SignUp = () => {
                 <select
                   defaultValue={"O+"}
                   {...register("bloodGroup", { required: true })}
-                  className="w-full bg-gray-200 py-2"
+                  className="w-full bg-gray-200 py-2 rounded-md"
                 >
                   {bloodOptions.map((bloodGroup) => (
                     <option key={bloodGroup.label} value={bloodGroup.value}>
@@ -189,7 +189,7 @@ const SignUp = () => {
                 <select
                   defaultValue={"Rangpur"}
                   {...register("district", { required: true })}
-                  className="w-full bg-gray-200 py-2"
+                  className="w-full bg-gray-200 py-2 rounded-md"
                 >
                   {sortedDistricts.map((district) => (
                     <option key={district.id} value={district.name}>

@@ -8,10 +8,11 @@ import Funding from "../pages/Funding/Funding";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DonationRequests from "../pages/DonationRequests/DonationRequests";
 import RequesDetails from "../pages/RequesDetails/RequesDetails";
-import { getRequestDetail } from "../api/crud";
+import { getSingleRequest } from "../api/crud";
 import PrivateRoute from "./PrivateRoute";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import MyRequests from "../pages/Dashboard/Donor/MyRequests";
+import CreateRequests from "../pages/Dashboard/Donor/CreateRequests";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
         ),
         loader: async ({ params }) =>
           // await axiosSecure.get(`/request-details/${params.id}`),
-          await getRequestDetail(params.id),
+          await getSingleRequest(params.id),
       },
       { path: "/fundings", element: <Funding /> },
     ],
@@ -59,6 +60,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyRequests />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "create-requests",
+        element: (
+          <PrivateRoute>
+            <CreateRequests />
           </PrivateRoute>
         ),
       },

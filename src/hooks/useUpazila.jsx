@@ -4,7 +4,7 @@ const useUpazila = () => {
   const [upazila, setUpazila] = useState([]);
 
   useEffect(() => {
-    fetch("./upazila.json")
+    fetch("/upazila.json")
       .then((res) => res.json())
       .then((upazilaData) => {
         const { data } = upazilaData.find((item) => item?.type === "table");

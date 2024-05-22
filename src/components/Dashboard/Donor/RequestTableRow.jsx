@@ -1,57 +1,56 @@
 import { format } from "date-fns";
+import useAuth from "../../../hooks/useAuth";
+import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
-const RequestTableRow = ({ room }) => {
+const RequestTableRow = ({ request, index }) => {
+  const { user } = useAuth();
   return (
-    <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <div className="flex items-center">
-          <div className="flex-shrink-0">
-            <div className="block relative">
-              <img
-                alt="profile"
-                src={room?.image}
-                className="mx-auto object-cover rounded h-10 w-15 "
-              />
-            </div>
-          </div>
-          <div className="ml-3">
-            <p className="text-gray-900 whitespace-no-wrap">{room?.title}</p>
-          </div>
+    <tr className="bg-slate-400">
+      <td className="font-semibold">{index + 1}</td>
+      <td className="font-semibold">{request.recipient_name}</td>
+      <td className="">
+        {request?.hospital_name}, {request?.recipient_upazila},{" "}
+        {request?.recipient_district}
+      </td>
+      <td className="">
+        {request?.donation_date} <br></br> {request?.donation_time}
+      </td>
+      <td className="">{request?.donation_status}</td>
+      <td className="">
+        {/* {request?.donation_status === "inprogress" && ( */}
+        <div className="flex flex-col gap-3 justify-between">
+          <button className="btn btn-sm bg-green-800 text-white rounded-lg text-xs hover:bg-slate-900 hover:text-amber-700">
+            Done
+          </button>
+          <button className="btn btn-sm bg-red-800 text-white rounded-lg text-xs hover:bg-slate-900 hover:text-amber-700">
+            Cancel
+          </button>
         </div>
+        {/* )} */}
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">{room?.location}</p>
+      <td className="">
+        {request?.donation_status === "inprogress" && (
+          <p>
+            {user?.displayName}, {user?.email}
+          </p>
+        )}
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">${room?.price}</p>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">
-          {format(new Date(room?.from), "P")}
+      <td className="h-full">
+        <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
+          <FaRegEdit></FaRegEdit>
         </p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 whitespace-no-wrap">
-          {format(new Date(room?.to), "P")}
+      <td className="h-full">
+        <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 hover:bg-red-700 hover:text-white cursor-pointer">
+          <MdDelete></MdDelete>
         </p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <span className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 bg-red-200 opacity-50 rounded-full"
-          ></span>
-          <span className="relative">Delete</span>
-        </span>
-      </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <span className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-          ></span>
-          <span className="relative">Update</span>
-        </span>
+      <td className="h-full">
+        <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
+          <FaEye />
+        </p>
       </td>
     </tr>
   );
