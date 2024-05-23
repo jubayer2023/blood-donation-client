@@ -1,6 +1,7 @@
 import RequestTableRow from "./RequestTableRow";
 
 const RequestTable = ({ myRequests }) => {
+  
   return (
     <div className="overflow-x-auto">
       <table className="table table-sm">
