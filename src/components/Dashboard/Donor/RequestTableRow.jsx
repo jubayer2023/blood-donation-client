@@ -7,16 +7,19 @@ import useMyRequsets from "../../../hooks/useMyRequsets";
 import { deleteRequest, updateStatus } from "../../../api/crud";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useRecentRequest from "../../../hooks/useRecentRequest";
 
 const RequestTableRow = ({ request, index }) => {
   const { user } = useAuth();
   const [, , refetchMyRequests] = useMyRequsets();
+  const [, , recentRequestsRefetch] = useRecentRequest();
 
   const handleUpdateDoneStatus = async (id) => {
     try {
       await updateStatus(id, { status: "done" });
       toast.success("Done Status updated successfully");
       refetchMyRequests();
+      recentRequestsRefetch();
     } catch (error) {
       console.log("Update Done error :", error.message);
       toast.error("Done Status Update Error");
@@ -29,6 +32,7 @@ const RequestTableRow = ({ request, index }) => {
       await updateStatus(id, { status: "cancelled" });
       toast.success("Ccancel Status updated successfully");
       refetchMyRequests();
+      recentRequestsRefetch();
     } catch (error) {
       console.log("Update cancel error :", error.message);
       toast.error("Cancel Status Update Error");
@@ -51,6 +55,7 @@ const RequestTableRow = ({ request, index }) => {
           if (data?.deletedCount > 0) {
             toast.success("Request Deleted successfully");
             refetchMyRequests();
+            recentRequestsRefetch();
           }
         }
       });

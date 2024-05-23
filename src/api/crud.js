@@ -5,6 +5,12 @@ export const getAllRequests = async () => {
     return data;
 };
 
+// get recent three requests
+export const getRecentThreeRequest = async () => {
+    const { data } = await axiosSecure.get('/recent-requests');
+    return data;
+};
+
 // get request details
 export const getSingleRequest = async (id) => {
     const { data } = await axiosSecure.get(`/request/${id}`);
@@ -34,7 +40,7 @@ export const updateStatus = async (id, status) => {
 // delete 
 export const deleteRequest = async (id) => {
     const { data } = await axiosSecure.delete(`/requests/${id}`);
-    console.log(data);
+    // console.log(data);
     return data;
 }
 

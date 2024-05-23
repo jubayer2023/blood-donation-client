@@ -5,6 +5,7 @@ import useMyRequsets from "../../../hooks/useMyRequsets";
 import Loader from "../../../components/Shared/Loader";
 import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
 import { useSearchParams } from "react-router-dom";
+import EmptyState from "../../../components/Shared/EmptyState";
 
 const MyRequests = () => {
   const [myRequests, isLoading] = useMyRequsets();
@@ -14,7 +15,7 @@ const MyRequests = () => {
 
   // console.log(queryStatus);
 
-  // console.log(myRequests);
+  // console.log(myRequests.length);
   if (isLoading) {
     return <Loader></Loader>;
   }
@@ -41,7 +42,15 @@ const MyRequests = () => {
         </div>
       </div>
       {/* table  */}
-      {myRequests && <RequestTable myRequests={myRequests}></RequestTable>}
+      {myRequests.length <= 0 ? (
+        <EmptyState
+          message={"Oops sorry ! No data found"}
+          label={"Create Request Now"}
+          address={"/dashboard/create-requests"}
+        ></EmptyState>
+      ) : (
+        <RequestTable myRequests={myRequests}></RequestTable>
+      )}
     </>
   );
 };

@@ -18,20 +18,22 @@ const useMyRequsets = () => {
     queryFn: async () => {
       const requests = await getMyRequests(user?.email);
       if (status === "pending") {
-        const pendings = requests.filter(
+        const pendings = await requests.filter(
           (req) => req.donation_status === status
         );
         return pendings;
       } else if (status === "inprogress") {
-        const inprogress = requests.filter(
+        const inprogress = await requests.filter(
           (req) => req.donation_status === status
         );
         return inprogress;
       } else if (status === "done") {
-        const done = requests.filter((req) => req.donation_status === status);
+        const done = await requests.filter(
+          (req) => req.donation_status === status
+        );
         return done;
       } else if (status === "cancelled") {
-        const cancelled = requests.filter(
+        const cancelled = await requests.filter(
           (req) => req.donation_status === status
         );
         return cancelled;
