@@ -7,7 +7,7 @@ export const getAllRequests = async () => {
 
 // get request details
 export const getSingleRequest = async (id) => {
-    const { data } = await axiosSecure.get(`/request-details/${id}`);
+    const { data } = await axiosSecure.get(`/request/${id}`);
     return data;
 }
 
@@ -35,6 +35,12 @@ export const updateStatus = async (id, status) => {
 export const deleteRequest = async (id) => {
     const { data } = await axiosSecure.delete(`/requests/${id}`);
     console.log(data);
+    return data;
+}
+
+// updateRequest
+export const updateRequestData = async (id, updateData) => {
+    const { data } = await axiosSecure.put(`/request-up/${id}`, updateData);
     return data;
 }
 

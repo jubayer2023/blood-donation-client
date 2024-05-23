@@ -14,6 +14,7 @@ const CommonForm = ({
   handleDateChange,
   handleTimeChange,
   loading,
+  previousData,
 }) => {
   return (
     <>
@@ -73,6 +74,7 @@ const CommonForm = ({
               })}
               type="text"
               required
+              defaultValue={previousData?.recipient_name}
               placeholder="Enter recipient name  here"
               className="w-full px-3 py-2 border border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
               data-temp-mail-org="0"
@@ -86,7 +88,7 @@ const CommonForm = ({
             </div>
             {/* blood options */}
             <select
-              defaultValue={"O+"}
+              defaultValue={previousData?.blood_group}
               {...register("blood_group", { required: true })}
               className="w-full bg-gray-200 py-2 px-2"
             >
@@ -113,6 +115,7 @@ const CommonForm = ({
             <select
               {...register("recipient_district", { required: true })}
               className="w-full bg-gray-200 py-2 px-2"
+              defaultValue={previousData?.recipient_district}
             >
               {sortedDistricts.map((district) => (
                 <option key={district.id} value={district.name}>
@@ -136,6 +139,7 @@ const CommonForm = ({
             <select
               {...register("recipient_upazila", { required: true })}
               className="w-full bg-gray-200 py-2 px-2"
+              defaultValue={previousData?.recipient_upazila}
             >
               {sortedUpazila.map((eachUpazila) => (
                 <option key={eachUpazila.id} value={eachUpazila.name}>
@@ -163,6 +167,7 @@ const CommonForm = ({
                 required: true,
               })}
               type="text"
+              defaultValue={previousData?.hospital_name}
               placeholder="Enter hospital name here"
               className="w-full px-3 py-2 border border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
             />
@@ -183,6 +188,7 @@ const CommonForm = ({
                 required: true,
               })}
               type="text"
+              defaultValue={previousData?.full_address_line}
               placeholder="Enter hospital name here"
               className="w-full px-3 py-2 border border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
             />
@@ -203,7 +209,10 @@ const CommonForm = ({
                 </label>
               </div>
               {/* DATE SELECTOR */}
-              <SelectDate handleDateChange={handleDateChange} />
+              <SelectDate
+                previousData={previousData}
+                handleDateChange={handleDateChange}
+              />
             </div>
             <div className="flex justify-between mt-2">
               <label htmlFor="time" className="text-sm mb-2">
@@ -211,7 +220,10 @@ const CommonForm = ({
               </label>
             </div>
             {/* TIME SELECTOR */}
-            <SelecetTime handleTimeChange={handleTimeChange} />
+            <SelecetTime
+              previousData={previousData}
+              handleTimeChange={handleTimeChange}
+            />
           </div>
           <div className="w-full">
             <div className="flex justify-between">
@@ -225,8 +237,9 @@ const CommonForm = ({
                 minLength: 50,
               })}
               type="text"
+              defaultValue={previousData?.request_message}
               placeholder="Say somthing about your need !"
-              className="w-full px-3 py-2 border border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+              className="w-full px-3 py-2 textarea-bordered h-28 focus:outline-rose-500 bg-gray-200 text-gray-900"
             />
             {errors.request_message?.type === "required" && (
               <span className="text-red-600 font-semibold text-xs">

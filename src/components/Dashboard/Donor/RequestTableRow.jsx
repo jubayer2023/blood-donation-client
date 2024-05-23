@@ -98,9 +98,11 @@ const RequestTableRow = ({ request, index }) => {
         )}
       </td>
       <td className="h-full">
-        <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
-          <FaRegEdit></FaRegEdit>
-        </p>
+        <Link to={`/dashboard/update-requests/${request._id}`}>
+          <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
+            <FaRegEdit></FaRegEdit>
+          </p>
+        </Link>
       </td>
       <td className="h-full">
         <p

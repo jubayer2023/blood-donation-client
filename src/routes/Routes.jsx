@@ -13,7 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import MyRequests from "../pages/Dashboard/Donor/MyRequests";
 import CreateRequests from "../pages/Dashboard/Donor/CreateRequests";
-
+import UpdateRequest from "../pages/Dashboard/Donor/UpdateRequest";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +71,15 @@ export const router = createBrowserRouter([
             <CreateRequests />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/dashboard/update-requests/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateRequest />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => await getSingleRequest(params.id),
       },
     ],
   },

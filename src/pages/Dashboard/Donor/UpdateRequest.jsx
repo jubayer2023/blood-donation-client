@@ -3,24 +3,27 @@ import DashHeading from "../DashHeading";
 import useDistricts from "../../../hooks/useDistricts";
 import useUpazila from "../../../hooks/useUpazila";
 import useAuth from "../../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 import CommonForm from "../../../components/Dashboard/Form/CommonForm";
-import { saveReuestsToDB } from "../../../api/crud";
 import useMyRequsets from "../../../hooks/useMyRequsets";
+import Swal from "sweetalert2";
+import { updateRequestData } from "../../../api/crud";
 
-const CreateRequests = () => {
+const UpdateRequest = () => {
+  const previousData = useLoaderData();
   const [loading, setLoading] = useState(false);
-  const [donationDate, setDonationDate] = useState("");
-  const [donationTime, setDonationTime] = useState("");
+  const [donationDate, setDonationDate] = useState(previousData?.donation_date);
+  const [donationTime, setDonationTime] = useState(previousData?.donation_time);
   const [districts] = useDistricts();
   const [upazila] = useUpazila();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [, , refetchMyRequests] = useMyRequsets();
   //   console.log(user?.email);
+  //   console.log(previousData);
   // sorting districts and upazila
   const sortedDistricts = districts.sort((a, b) =>
     a.name.localeCompare(b.name)
@@ -44,9 +47,7 @@ const CreateRequests = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    setLoading(true);
-
-    const requestData = {
+    const updateData = {
       ...data,
       donation_date: donationDate,
       donation_time: donationTime,
@@ -56,16 +57,30 @@ const CreateRequests = () => {
     // console.log(requestData);
 
     try {
-      await saveReuestsToDB(requestData);
-      // then refetch myRequests collection
-      refetchMyRequests();
-      toast.success("Request posted successfully");
-      // setLoading state as false
-      setLoading(false);
-      navigate("/dashboard/my-requests");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "The status will be PENDING !!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, update it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          setLoading(true);
+          const data = await updateRequestData(previousData?._id, updateData);
+          if (data?.modifiedCount > 0) {
+            toast.success("Request updated successfully");
+            refetchMyRequests();
+            setLoading(false);
+            navigate("/dashboard/my-requests");
+          }
+          //   console.log(data);
+        }
+      });
     } catch (error) {
-      console.log("ERROR FROM Create Rrequest : ", error);
-      toast.error("ERROR FROM Create Rrequest");
+      console.log("ERROR From Update Rrequest : ", error);
+      toast.error("ERROR From Update Rrequest");
       setLoading(false);
     }
   };
@@ -73,7 +88,7 @@ const CreateRequests = () => {
   return (
     <div>
       <DashHeading
-        title={"Create Donation Requests"}
+        title={"Update Donation Requests"}
         subtitle={"Wellcome to blood donations"}
       ></DashHeading>
       {/* form */}
@@ -91,6 +106,7 @@ const CreateRequests = () => {
             handleDateChange={handleDateChange}
             handleTimeChange={handleTimeChange}
             loading={loading}
+            previousData={previousData}
           />
         </div>
       </div>
@@ -98,4 +114,4 @@ const CreateRequests = () => {
   );
 };
 
-export default CreateRequests;
+export default UpdateRequest;
