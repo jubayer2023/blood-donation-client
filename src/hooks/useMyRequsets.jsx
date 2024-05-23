@@ -7,7 +7,7 @@ const useMyRequsets = () => {
   const {
     data: myRequests = [],
     isLoading,
-    refetch,
+    refetch: refetchMyRequests,
   } = useQuery({
     enabled: !loading,
     queryKey: ["myRequests", user?.email],
@@ -16,7 +16,7 @@ const useMyRequsets = () => {
       return requests;
     },
   });
-  return [myRequests, isLoading, refetch];
+  return [myRequests, isLoading, refetchMyRequests];
 };
 
 export default useMyRequsets;

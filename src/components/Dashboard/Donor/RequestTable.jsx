@@ -3,7 +3,7 @@ import RequestTableRow from "./RequestTableRow";
 const RequestTable = ({ myRequests }) => {
   return (
     <div className="overflow-x-auto">
-      <table className="table table-md">
+      <table className="table table-sm">
         <thead>
           <tr className="bg-slate-900 text-amber-700 font-serif">
             <th className="border-r-[1px]">#</th>

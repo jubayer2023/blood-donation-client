@@ -4,7 +4,7 @@ import { getAllRequests } from "../api/crud";
 const usePendingRequests = () => {
   const {
     data: pendingRequests = [],
-    refetch,
+    refetch: refetchPendingRequests,
     isLoading,
   } = useQuery({
     queryKey: ["pendingRequests"],
@@ -16,7 +16,7 @@ const usePendingRequests = () => {
       return pendings;
     },
   });
-  return [pendingRequests, isLoading, refetch];
+  return [pendingRequests, isLoading, refetchPendingRequests];
 };
 
 export default usePendingRequests;

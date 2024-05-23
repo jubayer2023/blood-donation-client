@@ -17,8 +17,25 @@ export const getMyRequests = async (email) => {
     return data;
 }
 
+// save request to database
 export const saveReuestsToDB = async (requestData) => {
     const { data } = await axiosSecure.post('/requests', requestData);
     // console.log(data);
     return data;
 }
+
+// update  status 
+export const updateStatus = async (id, status) => {
+    const { data } = await axiosSecure.put(`/requests/${id}`, status);
+    // console.log(data);
+    return data;
+}
+
+// delete 
+export const deleteRequest = async (id) => {
+    const { data } = await axiosSecure.delete(`/requests/${id}`);
+    console.log(data);
+    return data;
+}
+
+

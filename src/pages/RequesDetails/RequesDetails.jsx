@@ -1,19 +1,41 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Container from "../../components/Shared/Container";
 import { Helmet } from "react-helmet-async";
 import Heading from "../../components/Shared/Heading";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaLocationArrow } from "react-icons/fa6";
 import Button from "../../components/Button/Button";
+import { useState } from "react";
 import DonateConfirm from "../../components/Shared/Modal/DonateConfirm";
+import usePendingRequests from "../../hooks/usePendingRequests";
+import toast from "react-hot-toast";
+import useMyRequsets from "../../hooks/useMyRequsets";
+import { updateStatus } from "../../api/crud";
 
 const RequesDetails = () => {
+  const [isOpen, setIslOpen] = useState(false);
   const details = useLoaderData();
+  const [, , refetchPendingRequests] = usePendingRequests();
+  const [, , refetchMyRequests] = useMyRequsets();
+  const navigate = useNavigate();
 
-  // console.log(details);
-
-  const handleDonate = () => {
-    return <DonateConfirm></DonateConfirm>;
+  const handleConfirm = async () => {
+    try {
+      // console.log("Inprogress !!!");
+      await updateStatus(details._id, {
+        status: "inprogress",
+      });
+      // console.log(data);
+      // then refetch pendingRequests and myRequests
+      refetchPendingRequests();
+      refetchMyRequests();
+      toast.success("Successfully updated status");
+      setIslOpen(false);
+      navigate("/donation-requests");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error from donate confirm modal");
+    }
   };
 
   return (
@@ -58,9 +80,9 @@ const RequesDetails = () => {
                 <hr />
                 <p>Upazila: {details.recipient_upazila}</p>
                 <hr />
-                <p>Date: {details.donation_date}</p>
+                <p>Donation date: {details.donation_date}</p>
                 <hr />
-                <p>Time: {details.donation_time}</p>
+                <p>Donation time: {details.donation_time}</p>
                 <hr />
               </div>
             </div>
@@ -70,11 +92,21 @@ const RequesDetails = () => {
 
             {/* TO DO : DONATE  TASK */}
             <div className="my-4">
-              <Button onClick={handleDonate} label={"DONATE"}></Button>
+              <Button
+                disabled={details?.donation_status !== "pending"}
+                onClick={() => setIslOpen(true)}
+                label={"DONATE"}
+              ></Button>
             </div>
           </div>
         </div>
       </div>
+      {/* confirm modal */}
+      <DonateConfirm
+        isOpen={isOpen}
+        setIslOpen={setIslOpen}
+        handleConfirm={handleConfirm}
+      ></DonateConfirm>
     </Container>
   );
 };

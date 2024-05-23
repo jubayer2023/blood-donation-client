@@ -19,7 +19,7 @@ const CreateRequests = () => {
   const [upazila] = useUpazila();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [, , refetch] = useMyRequsets();
+  const [, , refetchMyRequests] = useMyRequsets();
   //   console.log(user?.email);
   // sorting districts and upazila
   const sortedDistricts = districts.sort((a, b) =>
@@ -58,7 +58,7 @@ const CreateRequests = () => {
     try {
       await saveReuestsToDB(requestData);
       // then refetch myRequests collection
-      refetch();
+      refetchMyRequests();
       toast.success("Request posted successfully");
       // setLoading state as false
       setLoading(false);
