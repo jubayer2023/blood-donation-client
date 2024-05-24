@@ -14,6 +14,7 @@ import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import MyRequests from "../pages/Dashboard/Donor/MyRequests";
 import CreateRequests from "../pages/Dashboard/Donor/CreateRequests";
 import UpdateRequest from "../pages/Dashboard/Donor/UpdateRequest";
+import SearchPage from "../pages/SearchPage/SearchPage";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       { path: "/donation-requests", element: <DonationRequests /> },
+      { path: "/search-requests", element: <SearchPage /> },
       {
         path: "/donation-details/:id",
         element: (

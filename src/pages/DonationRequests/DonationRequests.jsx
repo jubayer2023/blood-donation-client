@@ -77,7 +77,7 @@ const DonationRequests = () => {
                   to={`/donation-details/${item._id}`}
                   className="mt-5 md:mt-0"
                 >
-                  <button className="btn btn-sm btn-outline rounded-md bg-slate-400 text-amber-800 hover:text-amber-600 hover:bg-slate-800 text-xs">
+                  <button className="btn btn-sm min-w-fit btn-outline rounded-md bg-slate-400 text-amber-800 hover:text-amber-600 hover:bg-slate-800 text-xs">
                     View Details
                   </button>
                 </Link>

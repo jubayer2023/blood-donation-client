@@ -98,7 +98,7 @@ const CommonForm = ({
                 </option>
               ))}
             </select>
-            {errors.bloodGroup?.type === "required" && (
+            {errors.blood_group?.type === "required" && (
               <span className="text-red-600 font-semibold text-xs">
                 *Blood group is required !!!
               </span>

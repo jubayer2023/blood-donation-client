@@ -1,8 +1,16 @@
 import { axiosPublic, axiosSecure } from "./axiosBaseURL";
 // get all pending requests
-export const getAllRequests = async (info) => {
-    console.log(info)
+export const getAllPendingRequests = async (info) => {
+    // console.log(info)
     const { data } = await axiosPublic.get('/requests', { params: info });
+    return data;
+};
+
+
+// get search requests
+export const getSearchRequests = async (searchData) => {
+    // console.log(searchData);
+    const { data } = await axiosPublic.get(`/search-requests`, { params: searchData });
     return data;
 };
 
@@ -11,11 +19,13 @@ export const getPendingCount = async () => {
     const { data } = await axiosPublic.get('/pending-count');
     return data;
 };
+
 // get recent three requests
 export const getRecentThreeRequest = async (email) => {
     const { data } = await axiosSecure.get(`/recent-requests/${email}`);
     return data;
 };
+
 
 // get request details
 export const getSingleRequest = async (id) => {

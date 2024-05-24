@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllRequests } from "../api/crud";
+import { getAllPendingRequests } from "../api/crud";
 import useAuth from "./useAuth";
 
-const usePendingRequests = (info ) => {
+const usePendingRequests = (info) => {
   // console.log(info);
   const { loading } = useAuth();
   const {
@@ -13,9 +13,9 @@ const usePendingRequests = (info ) => {
     enabled: !loading,
     queryKey: ["pendingRequests", info],
     queryFn: async () => {
-      const data = await getAllRequests(info);
+      const data = await getAllPendingRequests(info);
 
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });

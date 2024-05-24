@@ -83,18 +83,18 @@ const Contact = () => {
             <div className="">
               {/* icons */}
               <div className="flex items-center space-x-5 my-3">
-                <span className="text-red-600 cursor-pointer transition ease-out hover:animate-spin">
+                <span className="text-blue-600 cursor-pointer transition ease-out hover:animate-spin">
                   <FaFacebook />
                 </span>
 
-                <span className="text-red-600 cursor-pointer transition ease-out hover:animate-spin">
+                <span className="text-rose-600 cursor-pointer transition ease-out hover:animate-spin">
                   <FaInstagram />
                 </span>
                 <span className="text-red-600 cursor-pointer transition ease-out hover:animate-spin">
                   <FaYoutube />
                 </span>
-                <Link className="text-red-600 text-sm font-semibold cursor-pointer underline">
-                  www.blodDonation.com
+                <Link className="text-amber-800 text-sm font-semibold cursor-pointer underline">
+                  +880 17348**946
                 </Link>
               </div>
               <Link

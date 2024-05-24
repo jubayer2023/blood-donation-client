@@ -2,7 +2,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
-import { FaArrowsSpin } from "react-icons/fa6";
 import { IoSyncCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import { setCookie } from "../../api/auth";

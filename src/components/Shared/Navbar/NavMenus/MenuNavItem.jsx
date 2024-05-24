@@ -9,8 +9,8 @@ const MenuNavItems = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-red-600 font-bold px-4 py-1 text-white rounded-sm transition ease-out"
-            : "px-4 py-1 font-semibold text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 "
+            ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
+            : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
         }
         to={"/"}
       >
@@ -19,8 +19,8 @@ const MenuNavItems = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-red-600 font-bold px-4 py-1 text-white rounded-sm transition ease-out"
-            : "px-4 py-1 font-semibold text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 "
+            ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
+            : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
         }
         to={"/donation-requests"}
       >
@@ -29,8 +29,18 @@ const MenuNavItems = () => {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-red-600 font-bold px-4 py-1 text-white rounded-sm transition ease-out"
-            : "px-4 py-1 font-semibold text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 "
+            ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
+            : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
+        }
+        to={"/search-requests"}
+      >
+        Search requests
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive
+            ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
+            : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
         }
         to={"/blog"}
       >
@@ -43,8 +53,8 @@ const MenuNavItems = () => {
           <NavLink
             className={({ isActive }) =>
               isActive
-                ? "bg-red-600 font-bold px-4 py-1 text-white rounded-sm transition ease-out"
-                : "px-4 py-1 font-semibold text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 "
+                ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
+                : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
             }
             to={"/login"}
           >
@@ -53,8 +63,8 @@ const MenuNavItems = () => {
           <NavLink
             className={({ isActive }) =>
               isActive
-                ? "bg-red-600 font-bold px-4 py-1 text-white rounded-sm transition ease-out"
-                : "px-4 py-1 font-semibold text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 "
+                ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
+                : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
             }
             to={"/signup"}
           >
