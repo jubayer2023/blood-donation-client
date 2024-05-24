@@ -36,6 +36,7 @@ const MyRequests = () => {
             <FilterTab
               key={status}
               status={status}
+              address={"my-requests"}
               selected={queryStatus === status}
             ></FilterTab>
           ))}

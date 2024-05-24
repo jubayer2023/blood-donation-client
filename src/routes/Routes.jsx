@@ -15,6 +15,8 @@ import MyRequests from "../pages/Dashboard/Donor/MyRequests";
 import CreateRequests from "../pages/Dashboard/Donor/CreateRequests";
 import UpdateRequest from "../pages/Dashboard/Donor/UpdateRequest";
 import SearchPage from "../pages/SearchPage/SearchPage";
+import AdminRoute from "./AdminRoute";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +84,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => await getSingleRequest(params.id),
+      },
+      // admin routes
+      {
+        path: "manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
     ],
   },

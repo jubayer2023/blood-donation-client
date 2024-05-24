@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import qs from "query-string";
 
-const FilterTab = ({ status, selected }) => {
+const FilterTab = ({ status, selected, address }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const FilterTab = ({ status, selected }) => {
     const updatedQuery = { ...currentQuery, status: status };
 
     const searchQuery = qs.stringifyUrl({
-      url: "/dashboard/my-requests",
+      url: `/dashboard/${address}`,
       query: updatedQuery,
     });
 

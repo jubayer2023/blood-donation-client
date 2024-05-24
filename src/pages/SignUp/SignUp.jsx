@@ -56,6 +56,7 @@ const SignUp = () => {
       // 3. save to data base your user info
       const userInfo = {
         name: data?.name,
+        photo_url: image_live_link,
         email: data?.email,
         blood_group: data?.bloodGroup,
         district: data?.district,
