@@ -3,13 +3,17 @@ import UsersTable from "../../../components/Dashboard/Admin/UsersTable";
 import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
 import useAllUsers from "../../../hooks/useAllUsers";
 import DashHeading from "../DashHeading";
+import Loader from "../../../components/Shared/Loader";
 const filterStatus = ["active", "blocked"];
 const ManageUsers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryStatus = searchParams.get("status");
-  const [users] = useAllUsers();
+  const [users, isLoading] = useAllUsers();
   console.log(users);
 
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
   return (
     <div className="">
       {/* heading */}
