@@ -1,19 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllRequests } from "../api/crud";
+import useAuth from "./useAuth";
 
-const usePendingRequests = () => {
+const usePendingRequests = (info ) => {
+  // console.log(info);
+  const { loading } = useAuth();
   const {
     data: pendingRequests = [],
     refetch: refetchPendingRequests,
     isLoading,
   } = useQuery({
-    queryKey: ["pendingRequests"],
+    enabled: !loading,
+    queryKey: ["pendingRequests", info],
     queryFn: async () => {
-      const data = await getAllRequests();
-      const pendings = data.filter(
-        (request) => request.donation_status === "pending"
-      );
-      return pendings;
+      const data = await getAllRequests(info);
+
+      console.log(data);
+      return data;
     },
   });
   return [pendingRequests, isLoading, refetchPendingRequests];

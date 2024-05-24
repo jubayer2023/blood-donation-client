@@ -3,16 +3,16 @@ import useAuth from "./useAuth";
 import { getRecentThreeRequest } from "../api/crud";
 
 const useRecentRequest = () => {
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
   const {
     data: recentRequests = [],
     isLoading,
     refetch: recentRequestsRefetch,
   } = useQuery({
     enabled: !loading,
-    queryKey: ["recentRequests"],
+    queryKey: ["recentRequests", user?.email],
     queryFn: async () => {
-      const data = await getRecentThreeRequest();
+      const data = await getRecentThreeRequest(user?.email);
       return data;
     },
   });
