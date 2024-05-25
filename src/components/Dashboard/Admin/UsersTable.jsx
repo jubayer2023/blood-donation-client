@@ -1,6 +1,8 @@
 import UserTableRow from "./UserTableRow";
 
-const UsersTable = ({ users }) => {
+const UsersTable = ({ users, currentPage, itemPerPage }) => {
+  const startIndex = (parseInt(currentPage) - 1) * itemPerPage;
+
   return (
     <div className="overflow-x-auto">
       <table className="table bg-slate-400 ">
@@ -34,7 +36,7 @@ const UsersTable = ({ users }) => {
               <UserTableRow
                 key={person?._id}
                 person={person}
-                index={index}
+                index={startIndex + index}
               ></UserTableRow>
             ))}
         </tbody>

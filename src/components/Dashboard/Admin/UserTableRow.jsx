@@ -40,7 +40,7 @@ const UserTableRow = ({ person, index }) => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             // onBlur={() => setIsOpen(false)}
-            className="cursor-pointer btn btn-sm bg-rose-300"
+            className="cursor-pointer btn btn-sm bg-rose-300 hover:mt-2"
           >
             <BsThreeDotsVertical></BsThreeDotsVertical>
           </button>

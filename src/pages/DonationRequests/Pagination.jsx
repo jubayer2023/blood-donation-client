@@ -1,4 +1,5 @@
-const Paginatin = ({
+const Pagination = ({
+  userPage,
   pageArray,
   handleNextBtn,
   handlePreviousBtn,
@@ -6,7 +7,11 @@ const Paginatin = ({
   setCurrentPage,
 }) => {
   return (
-    <div className="flex justify-center items-center flex-wrap my-16">
+    <div
+      className={`flex justify-center items-center flex-wrap my-16 ${
+        userPage ? "bg-neutral-200 p-3" : ""
+      }`}
+    >
       <button
         onClick={() => handlePreviousBtn(currentPage)}
         className="btn btn-sm btn-outline"
@@ -37,4 +42,4 @@ const Paginatin = ({
   );
 };
 
-export default Paginatin;
+export default Pagination;

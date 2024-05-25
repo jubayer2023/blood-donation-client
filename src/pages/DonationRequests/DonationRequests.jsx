@@ -6,7 +6,7 @@ import Loader from "../../components/Shared/Loader";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import usePendingCount from "../../hooks/usePendingCount";
-import Paginatin from "./Paginatin";
+import Pagination from "./Pagination";
 
 const DonationRequests = () => {
   const [count] = usePendingCount();
@@ -85,13 +85,13 @@ const DonationRequests = () => {
             ))}
         </div>
         {/* pagination here */}
-        <Paginatin
+        <Pagination
           pageArray={pageArray}
           handleNextBtn={handleNextBtn}
           handlePreviousBtn={handlePreviousBtn}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-        ></Paginatin>
+        ></Pagination>
       </div>
     </Container>
   );

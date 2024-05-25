@@ -3,7 +3,7 @@ import useAuth from "./useAuth";
 import { getAllUsers } from "../api/admin";
 import { useSearchParams } from "react-router-dom";
 
-const useAllUsers = () => {
+const useAllUsers = (pageInfo) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryStatus = searchParams.get("status");
 
@@ -14,9 +14,9 @@ const useAllUsers = () => {
     isLoading,
   } = useQuery({
     enabled: !loading,
-    queryKey: ["users", queryStatus],
+    queryKey: ["users", queryStatus, pageInfo],
     queryFn: async () => {
-      const data = await getAllUsers();
+      const data = await getAllUsers(pageInfo);
       if (queryStatus === "active") {
         const activeUsers = await data.filter(
           (user) => user.status === queryStatus

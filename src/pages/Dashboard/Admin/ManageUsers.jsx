@@ -4,15 +4,47 @@ import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
 import useAllUsers from "../../../hooks/useAllUsers";
 import DashHeading from "../DashHeading";
 import Loader from "../../../components/Shared/Loader";
+import useUsersCount from "../../../hooks/useUsersCount";
+import { useState } from "react";
+import Pagination from "../../DonationRequests/Pagination";
+
 const filterStatus = ["active", "blocked"];
+
 const ManageUsers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const queryStatus = searchParams.get("status");
-  const [users, isLoading] = useAllUsers();
-  console.log(users);
+  const [count] = useUsersCount();
+  // console.log(count);
+  const totalItems = count?.count;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 10;
+
+  const [users, isLoading, refetchUsers] = useAllUsers({
+    size: itemsPerPage,
+    currentPage: currentPage,
+  });
+  // console.log(users);
+
+  const pageNumber = Math.ceil(totalItems / itemsPerPage);
+
+  const pageArray = Array.from({ length: pageNumber }, (_, i) => i + 1);
+  // console.log(pageArray);
+
+  const handlePreviousBtn = (currentPage) => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextBtn = (currentPage) => {
+    if (currentPage < pageNumber) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   if (isLoading) {
-    return <Loader></Loader>;
+    return <Loader />;
   }
   return (
     <div className="">
@@ -32,7 +64,20 @@ const ManageUsers = () => {
         </div>
       </div>
       {/* table */}
-      <UsersTable users={users}></UsersTable>
+      <UsersTable
+        users={users}
+        currentPage={currentPage}
+        itemPerPage={itemsPerPage}
+      ></UsersTable>
+      {/*pagination */}
+      <Pagination
+        userPage={true}
+        pageArray={pageArray}
+        handleNextBtn={handleNextBtn}
+        handlePreviousBtn={handlePreviousBtn}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      ></Pagination>
     </div>
   );
 };
