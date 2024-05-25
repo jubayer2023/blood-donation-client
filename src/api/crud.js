@@ -6,11 +6,16 @@ export const getAllPendingRequests = async (info) => {
     return data;
 };
 
+// get users
+export const getThreeDonors = async () => {
+    const { data } = await axiosPublic.get('/users');
+    return data;
+};
 
 // get search requests
-export const getSearchRequests = async (searchData) => {
+export const getSearchDonors = async (searchData) => {
     // console.log(searchData);
-    const { data } = await axiosPublic.get(`/search-requests`, { params: searchData });
+    const { data } = await axiosPublic.get(`/search-donors`, { params: searchData });
     return data;
 };
 

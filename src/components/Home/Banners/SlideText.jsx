@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SlideText = ({ banner }) => {
   return (
     <>
@@ -17,12 +19,16 @@ const SlideText = ({ banner }) => {
               </p>
             </div>
             <div className="flex justify-center items-center gap-4 flex-col md:flex-row">
-              <button className="btn btn-sm md:btn-md btn-outline text-white ">
-                {banner.btn_search}
-              </button>
-              <button className="btn btn-sm md:btn-md btn-outline text-white bg-rose-700">
-                {banner.btn_join}
-              </button>
+              <Link to={"/search-donors"}>
+                <button className="btn btn-sm md:btn-md btn-outline text-white ">
+                  {banner.btn_search}
+                </button>
+              </Link>
+              <Link to={'/signup'}>
+                <button className="btn btn-sm md:btn-md btn-outline text-white bg-rose-700">
+                  {banner.btn_join}
+                </button>
+              </Link>
             </div>
           </div>
         </div>

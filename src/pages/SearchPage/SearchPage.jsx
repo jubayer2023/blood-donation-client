@@ -4,15 +4,17 @@ import { bloodOptions } from "../../components/Shared/Form/SelectOptions/SelectO
 import useDistricts from "../../hooks/useDistricts";
 import useUpazila from "../../hooks/useUpazila";
 import { useState } from "react";
-import { getSearchRequests } from "../../api/crud";
+import { getSearchDonors } from "../../api/crud";
 import Container from "../../components/Shared/Container";
 import SearchCard from "./SearchCard";
+import useDonors from "../../hooks/useDonors";
 
 const SearchPage = () => {
   const [districts] = useDistricts();
   const [upazila] = useUpazila();
   const [loading, setLoading] = useState(false);
-  const [searchCardData, setSearchCardData] = useState([]);
+  const [donors, setDonors] = useState([]);
+  const [latestDonors] = useDonors();
 
   // sorting
   const sortedDistricts = districts.sort((a, b) =>
@@ -33,9 +35,9 @@ const SearchPage = () => {
       const searchData = { ...data };
       //   console.log(searchData);
 
-      const response = await getSearchRequests(searchData);
-      setSearchCardData(response);
-      //   console.log(response);
+      const response = await getSearchDonors(searchData);
+      setDonors(response);
+      // console.log(response);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -148,11 +150,17 @@ const SearchPage = () => {
         </div>
       </div>
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5  mt-10 ">
-          {searchCardData &&
-            searchCardData.map((request) => (
-              <SearchCard key={request?._id} item={request}></SearchCard>
-            ))}
+        <div className="flex flex-wrap justify-center items-center ">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5   mt-10 ">
+            {donors.length <= 0 &&
+              latestDonors.map((donor) => (
+                <SearchCard key={donor?._id} donor={donor} />
+              ))}
+            {donors &&
+              donors.map((donor) => (
+                <SearchCard key={donor?._id} donor={donor} />
+              ))}
+          </div>
         </div>
       </Container>
     </div>
