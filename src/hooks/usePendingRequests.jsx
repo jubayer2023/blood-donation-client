@@ -10,7 +10,6 @@ const usePendingRequests = (info) => {
     refetch: refetchPendingRequests,
     isLoading,
   } = useQuery({
-    enabled: !loading,
     queryKey: ["pendingRequests", info],
     queryFn: async () => {
       const data = await getAllPendingRequests(info);

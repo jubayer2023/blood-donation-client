@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-const UserTableRow = ({ person, index }) => {
+const UserTableRow = ({
+  person,
+  index,
+  handleBlock,
+  handleUnBlock,
+  handleVolunteer,
+  handleDonor,
+  handleAdmin,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const id = person?._id;
+
   return (
     <>
       <tr>
@@ -40,27 +50,39 @@ const UserTableRow = ({ person, index }) => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             // onBlur={() => setIsOpen(false)}
-            className="cursor-pointer btn btn-sm bg-rose-300 hover:mt-2"
+            className="cursor-pointer btn btn-sm bg-rose-300 transition "
           >
             <BsThreeDotsVertical></BsThreeDotsVertical>
           </button>
           <ul
             tabIndex={0}
-            className={`absolute -z-10 top-5 right-16 md:right-20 lg:right-24 menu p-3 flex flex-col gap-0 shadow-md bg-base-100 rounded-box w-40 transform ${
+            className={`absolute -z-10 top-[50px] right-[20px] md:right-[30px] lg:right-[40px]  menu p-3 flex flex-col gap-0 shadow-md bg-base-100 rounded-box w-36  transform ${
               isOpen
-                ? "z-10  transition-all delay-100 ease-linear"
+                ? "z-10  transition-all delay-100 ease-linear "
                 : "  transition-all delay-150 ease-linear"
             }`}
           >
             {person?.status === "active" ? (
               <li>
-                <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                <span
+                  onClick={() => {
+                    handleBlock(id);
+                    setIsOpen(false);
+                  }}
+                  className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                >
                   Block
                 </span>
               </li>
             ) : (
               <li>
-                <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                <span
+                  onClick={() => {
+                    handleUnBlock(id);
+                    setIsOpen(false);
+                  }}
+                  className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                >
                   Unblock
                 </span>
               </li>
@@ -69,12 +91,24 @@ const UserTableRow = ({ person, index }) => {
             {person?.role === "donor" && (
               <>
                 <li>
-                  <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                  <span
+                    onClick={() => {
+                      handleAdmin(id);
+                      setIsOpen(false);
+                    }}
+                    className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                  >
                     Admin
                   </span>
                 </li>
                 <li>
-                  <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                  <span
+                    onClick={() => {
+                      handleVolunteer(id);
+                      setIsOpen(false);
+                    }}
+                    className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                  >
                     Volunteer
                   </span>
                 </li>
@@ -84,12 +118,24 @@ const UserTableRow = ({ person, index }) => {
             {person?.role === "volunteer" && (
               <>
                 <li>
-                  <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                  <span
+                    onClick={() => {
+                      handleAdmin(id);
+                      setIsOpen(false);
+                    }}
+                    className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                  >
                     Admin
                   </span>
                 </li>
                 <li>
-                  <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                  <span
+                    onClick={() => {
+                      handleDonor(id);
+                      setIsOpen(false);
+                    }}
+                    className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                  >
                     Donor
                   </span>
                 </li>
@@ -99,12 +145,24 @@ const UserTableRow = ({ person, index }) => {
             {person?.role === "admin" && (
               <>
                 <li>
-                  <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                  <span
+                    onClick={() => {
+                      handleDonor(id);
+                      setIsOpen(false);
+                    }}
+                    className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                  >
                     Donor
                   </span>
                 </li>
                 <li>
-                  <span className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700">
+                  <span
+                    onClick={() => {
+                      handleVolunteer(id);
+                      setIsOpen(false);
+                    }}
+                    className="btn btn-sm rounded-md bg-neutral-300 text-gray-600 hover:bg-slate-800 hover:text-amber-700"
+                  >
                     Volunteer
                   </span>
                 </li>

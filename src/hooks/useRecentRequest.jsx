@@ -9,7 +9,6 @@ const useRecentRequest = () => {
     isLoading,
     refetch: recentRequestsRefetch,
   } = useQuery({
-    enabled: !loading,
     queryKey: ["recentRequests", user?.email],
     queryFn: async () => {
       const data = await getRecentThreeRequest(user?.email);

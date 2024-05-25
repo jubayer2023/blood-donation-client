@@ -3,7 +3,6 @@ import UsersTable from "../../../components/Dashboard/Admin/UsersTable";
 import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
 import useAllUsers from "../../../hooks/useAllUsers";
 import DashHeading from "../DashHeading";
-import Loader from "../../../components/Shared/Loader";
 import useUsersCount from "../../../hooks/useUsersCount";
 import { useState } from "react";
 import Pagination from "../../DonationRequests/Pagination";
@@ -43,9 +42,7 @@ const ManageUsers = () => {
     }
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+ 
   return (
     <div className="">
       {/* heading */}
@@ -68,6 +65,8 @@ const ManageUsers = () => {
         users={users}
         currentPage={currentPage}
         itemPerPage={itemsPerPage}
+        isLoading={isLoading}
+        refetchUsers={refetchUsers}
       ></UsersTable>
       {/*pagination */}
       <Pagination

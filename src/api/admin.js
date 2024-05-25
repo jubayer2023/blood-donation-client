@@ -12,3 +12,15 @@ export const getAllUsers = async (pageInfo) => {
     const { data } = await axiosSecure.get(`/users`, { params: pageInfo });
     return data;
 }
+
+// Change Role
+export const updateRole = async (id, role) => {
+    const { data } = await axiosSecure.put(`/user/role/${id}`, { role });
+    return data;
+}
+
+// Change Status
+export const updateUserStatus = async (id, status) => {
+    const { data } = await axiosSecure.put(`/user/status/${id}`, { status });
+    return data;
+}

@@ -5,7 +5,6 @@ import { getUsersCount } from "../api/admin";
 const useUsersCount = () => {
   const { loading } = useAuth();
   const { data: count = {}, refetch: refetchUsesCount } = useQuery({
-    enabled: !loading,
     queryKey: ["count"],
     queryFn: async () => {
       const data = await getUsersCount();

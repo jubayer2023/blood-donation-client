@@ -13,7 +13,6 @@ const useAllUsers = (pageInfo) => {
     refetch: refetchUsers,
     isLoading,
   } = useQuery({
-    enabled: !loading,
     queryKey: ["users", queryStatus, pageInfo],
     queryFn: async () => {
       const data = await getAllUsers(pageInfo);

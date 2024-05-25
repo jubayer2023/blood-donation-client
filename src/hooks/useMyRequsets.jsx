@@ -13,7 +13,6 @@ const useMyRequsets = () => {
     isLoading,
     refetch: refetchMyRequests,
   } = useQuery({
-    enabled: !loading,
     queryKey: ["myRequests", user?.email, status],
     queryFn: async () => {
       const requests = await getMyRequests(user?.email);

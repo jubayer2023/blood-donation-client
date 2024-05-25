@@ -5,7 +5,6 @@ import { getPendingCount } from "../api/crud";
 const usePendingCount = () => {
   const { loading } = useAuth();
   const { data: count = {}, refetch: refetchCount } = useQuery({
-    enabled: !loading,
     queryKey: ["count"],
     queryFn: async () => {
       const data = await getPendingCount();
