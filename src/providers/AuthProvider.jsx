@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
       .then(() => {
         toast.success("Log out successfull");
         window.location.replace("/login");
+        setLoading(false);
       })
       .catch((error) => {
         toast.error("Error from log out !");

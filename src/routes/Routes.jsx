@@ -17,6 +17,7 @@ import UpdateRequest from "../pages/Dashboard/Donor/UpdateRequest";
 import SearchPage from "../pages/SearchPage/SearchPage";
 import AdminRoute from "./AdminRoute";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import AllDonationRequest from "../components/Dashboard/Admin/AllDonationRequest";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +92,14 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "all-requests",
+        element: (
+          <AdminRoute>
+            <AllDonationRequest />
           </AdminRoute>
         ),
       },

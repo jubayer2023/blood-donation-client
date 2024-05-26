@@ -24,3 +24,9 @@ export const updateUserStatus = async (id, status) => {
     const { data } = await axiosSecure.put(`/user/status/${id}`, { status });
     return data;
 }
+
+// get all blood donation requests only by email
+export const getAllDonationRequests = async () => {
+    const { data } = await axiosSecure.get(`/all-requests`);
+    return data;
+}

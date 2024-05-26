@@ -1,22 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "./useAuth";
-import { getMyRequests } from "../api/crud";
 import { useSearchParams } from "react-router-dom";
+import useAuth from "./useAuth";
+import { getAllDonationRequests } from "../api/admin";
 
-const useMyRequsets = () => {
-  const { user, loading } = useAuth();
+const useAllRequests = () => {
+  const { loading } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const status = searchParams.get("status");
   // console.log(status);
   const {
-    data: myRequests = [],
+    data: allRequest = [],
     isLoading,
-    refetch: refetchMyRequests,
+    refetch: refetchAllRequests,
   } = useQuery({
     enabled: !loading,
-    queryKey: ["myRequests", user?.email, status],
+    queryKey: ["allRequesst", status],
     queryFn: async () => {
-      const requests = await getMyRequests(user?.email);
+      const requests = await getAllDonationRequests();
       if (status === "pending") {
         const pendings = await requests.filter(
           (req) => req.donation_status === status
@@ -43,7 +43,7 @@ const useMyRequsets = () => {
       }
     },
   });
-  return [myRequests, isLoading, refetchMyRequests];
+  return [allRequest, isLoading, refetchAllRequests];
 };
 
-export default useMyRequsets;
+export default useAllRequests;

@@ -8,11 +8,16 @@ import { deleteRequest, updateStatus } from "../../../api/crud";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useRecentRequest from "../../../hooks/useRecentRequest";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { useState } from "react";
+import useAllRequests from "../../../hooks/useAllRequests";
 
 const RequestTableRow = ({ request, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
   const [, , refetchMyRequests] = useMyRequsets();
   const [, , recentRequestsRefetch] = useRecentRequest();
+  const [, , refetchAllRequests] = useAllRequests();
 
   const handleUpdateDoneStatus = async (id) => {
     try {
@@ -20,6 +25,7 @@ const RequestTableRow = ({ request, index }) => {
       toast.success("Done Status updated successfully");
       refetchMyRequests();
       recentRequestsRefetch();
+      refetchAllRequests();
     } catch (error) {
       console.log("Update Done error :", error.message);
       toast.error("Done Status Update Error");
@@ -33,6 +39,7 @@ const RequestTableRow = ({ request, index }) => {
       toast.success("Ccancel Status updated successfully");
       refetchMyRequests();
       recentRequestsRefetch();
+      refetchAllRequests();
     } catch (error) {
       console.log("Update cancel error :", error.message);
       toast.error("Cancel Status Update Error");
@@ -56,6 +63,7 @@ const RequestTableRow = ({ request, index }) => {
             toast.success("Request Deleted successfully");
             refetchMyRequests();
             recentRequestsRefetch();
+            refetchAllRequests();
           }
         }
       });
@@ -102,27 +110,39 @@ const RequestTableRow = ({ request, index }) => {
           </p>
         )}
       </td>
-      <td className="h-full">
-        <Link to={`/dashboard/update-requests/${request._id}`}>
-          <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
-            <FaRegEdit></FaRegEdit>
-          </p>
-        </Link>
-      </td>
-      <td className="h-full">
-        <p
-          onClick={() => handleDeleteRequest(request?._id)}
-          className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 hover:bg-red-700 hover:text-white cursor-pointer"
+      <td className=" flex items-center justify-center relative">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          // onBlur={() => setIsOpen(false)}
+          className="cursor-pointer btn btn-sm bg-rose-300 transition "
         >
-          <MdDelete></MdDelete>
-        </p>
-      </td>
-      <td className="h-full">
-        <Link to={`/donation-details/${request?._id}`}>
-          <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-xl text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
-            <FaEye />
+          <BsThreeDotsVertical></BsThreeDotsVertical>
+        </button>
+        <ul
+          tabIndex={0}
+          className={`absolute -z-10 top-[50px] right-[20px] md:right-[20px]  menu p-3 flex flex-col gap-0 shadow-md bg-neutral-300 rounded-box w-36  transform ${
+            isOpen
+              ? "z-10  transition-all delay-100 ease-linear "
+              : "  transition-all delay-150 ease-linear"
+          }`}
+        >
+          <Link to={`/dashboard/update-requests/${request._id}`}>
+            <p className="flex justify-center items-center text-xl rounded-t-md bg-slate-900 border-b-[1px] border-gray-500 px-3 py-2 text-amber-700 cursor-pointer hover:bg-base-100 hover:text-black">
+              <FaRegEdit></FaRegEdit>
+            </p>
+          </Link>
+          <p
+            onClick={() => handleDeleteRequest(request?._id)}
+            className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 border-b-[1px] border-gray-500 text-amber-700 hover:bg-red-700 hover:text-white cursor-pointer"
+          >
+            <MdDelete></MdDelete>
           </p>
-        </Link>
+          <Link to={`/donation-details/${request?._id}`}>
+            <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-b-md text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
+              <FaEye />
+            </p>
+          </Link>
+        </ul>
       </td>
     </tr>
   );

@@ -1,10 +1,9 @@
 import RequestTableRow from "./RequestTableRow";
 
 const RequestTable = ({ myRequests }) => {
-  
   return (
-    <div className="overflow-x-auto">
-      <table className="table table-sm">
+    <div className="overflow-x-auto ">
+      <table className="table table-md ">
         <thead>
           <tr className="bg-slate-900 text-amber-700 font-serif">
             <th className="border-r-[1px]">#</th>
@@ -14,9 +13,7 @@ const RequestTable = ({ myRequests }) => {
             <th className="border-r-[1px]">Status</th>
             <th className="border-r-[1px]">Actions</th>
             <th className="border-r-[1px]">Donor info</th>
-            <th className="border-r-[1px]">Edit</th>
-            <th className="border-r-[1px]">Delete</th>
-            <th className="border-r-[1px]">View</th>
+            <th className="border-r-[1px]">Actions</th>
           </tr>
         </thead>
         <tbody>

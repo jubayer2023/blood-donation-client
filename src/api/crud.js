@@ -8,7 +8,7 @@ export const getAllPendingRequests = async (info) => {
 
 // get users
 export const getThreeDonors = async () => {
-    const { data } = await axiosPublic.get('/users');
+    const { data } = await axiosPublic.get('/three-donor');
     return data;
 };
 
