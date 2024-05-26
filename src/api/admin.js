@@ -1,4 +1,4 @@
-import { axiosSecure } from "./axiosBaseURL"
+import { axiosPublic, axiosSecure } from "./axiosBaseURL"
 
 // get users-count
 export const getUsersCount = async () => {
@@ -28,5 +28,17 @@ export const updateUserStatus = async (id, status) => {
 // get all blood donation requests only by email
 export const getAllDonationRequests = async () => {
     const { data } = await axiosSecure.get(`/all-requests`);
+    return data;
+}
+
+// create blog
+export const saveBlogContent = async (blog) => {
+    const { data } = await axiosSecure.post('/blog-content', blog);
+    return data;
+}
+
+// get blogs
+export const getBlogContent = async () => {
+    const { data } = await axiosPublic.get('/blog-content');
     return data;
 }

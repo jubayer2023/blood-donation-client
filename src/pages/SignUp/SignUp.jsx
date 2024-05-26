@@ -76,6 +76,8 @@ const SignUp = () => {
       // setLoading state as false
       setLoading(false);
       navigate(from, { replace: true });
+      
+      window.location.reload(from);
     } catch (error) {
       console.log("ERROR FROM SIGNUP : ", error);
       toast.error("ERROR FROM SIGNUP");

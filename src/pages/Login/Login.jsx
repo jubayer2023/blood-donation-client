@@ -28,7 +28,9 @@ const Login = () => {
       await setCookie(data?.email);
       // console.log(data);
       setLoading(false);
+
       navigate(from, { replace: true });
+      window.location.reload(from);
     } catch (error) {
       console.log(error);
       toast.error("Error from Login function");

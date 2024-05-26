@@ -18,6 +18,8 @@ import SearchPage from "../pages/SearchPage/SearchPage";
 import AdminRoute from "./AdminRoute";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AllDonationRequest from "../components/Dashboard/Admin/AllDonationRequest";
+import BlogContent from "../pages/Dashboard/BlogContent/BlogContent";
+import AddBlog from "../pages/Dashboard/BlogContent/AddBlog";
 
 export const router = createBrowserRouter([
   {
@@ -100,6 +102,22 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllDonationRequest />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "content-management",
+        element: (
+          <AdminRoute>
+            <BlogContent />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "content-management/add-blog",
+        element: (
+          <AdminRoute>
+            <AddBlog />
           </AdminRoute>
         ),
       },
