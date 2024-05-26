@@ -11,13 +11,17 @@ import useRecentRequest from "../../../hooks/useRecentRequest";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useState } from "react";
 import useAllRequests from "../../../hooks/useAllRequests";
+import useReqVolunteer from "../../../hooks/useReqVolunteer";
+import useRole from "../../../hooks/useRole";
 
 const RequestTableRow = ({ request, index }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
+  const [role] = useRole();
   const [, , refetchMyRequests] = useMyRequsets();
   const [, , recentRequestsRefetch] = useRecentRequest();
   const [, , refetchAllRequests] = useAllRequests();
+  const [, , refetchRequests] = useReqVolunteer();
 
   const handleUpdateDoneStatus = async (id) => {
     try {
@@ -26,6 +30,7 @@ const RequestTableRow = ({ request, index }) => {
       refetchMyRequests();
       recentRequestsRefetch();
       refetchAllRequests();
+      refetchRequests();
     } catch (error) {
       console.log("Update Done error :", error.message);
       toast.error("Done Status Update Error");
@@ -40,6 +45,7 @@ const RequestTableRow = ({ request, index }) => {
       refetchMyRequests();
       recentRequestsRefetch();
       refetchAllRequests();
+      refetchRequests();
     } catch (error) {
       console.log("Update cancel error :", error.message);
       toast.error("Cancel Status Update Error");
@@ -64,6 +70,7 @@ const RequestTableRow = ({ request, index }) => {
             refetchMyRequests();
             recentRequestsRefetch();
             refetchAllRequests();
+            refetchRequests();
           }
         }
       });
@@ -112,8 +119,9 @@ const RequestTableRow = ({ request, index }) => {
       </td>
       <td className=" flex items-center justify-center relative">
         <button
+          disabled={role === "volunteer"}
           onClick={() => setIsOpen(!isOpen)}
-          // onBlur={() => setIsOpen(false)}
+          onBlur={() => setIsOpen(false)}
           className="cursor-pointer btn btn-sm bg-rose-300 transition "
         >
           <BsThreeDotsVertical></BsThreeDotsVertical>

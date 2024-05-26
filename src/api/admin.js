@@ -27,7 +27,7 @@ export const updateUserStatus = async (id, status) => {
 
 // get all blood donation requests only by email
 export const getAllDonationRequests = async () => {
-    const { data } = await axiosSecure.get(`/all-requests`);
+    const { data } = await axiosSecure.get(`/requests-admin`);
     return data;
 }
 

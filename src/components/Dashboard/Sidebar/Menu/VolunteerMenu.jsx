@@ -1,15 +1,18 @@
+import { FaClipboardList } from "react-icons/fa6";
 import MenuItem from "../MenuItem";
-import { BsFillHouseAddFill } from "react-icons/bs";
-import { MdHomeWork, MdOutlineManageHistory } from "react-icons/md";
+import { SiGoogletagmanager } from "react-icons/si";
 const VolunteerMenu = () => {
   return (
     <>
-      <MenuItem icon={BsFillHouseAddFill} label="Add Room" address="add-room" />
-      <MenuItem icon={MdHomeWork} label="My Listings" address="my-listings" />
       <MenuItem
-        icon={MdOutlineManageHistory}
-        label="Manage Bookings"
-        address="manage-bookings"
+        icon={FaClipboardList}
+        label="All Requests"
+        address="all-requests"
+      />
+      <MenuItem
+        icon={SiGoogletagmanager}
+        label="Content Manage"
+        address="content-management"
       />
     </>
   );
