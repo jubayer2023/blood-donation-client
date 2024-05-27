@@ -1,6 +1,6 @@
-import RequestTableRow from "./RequestTableRow";
+import VolunteerReqTableRow from "./VolunteerReqTableRow";
 
-const RequestTable = ({ myRequests }) => {
+const VolunteerRequestTable = ({ myRequests }) => {
   return (
     <div className="overflow-x-auto ">
       <table className="table table-md ">
@@ -19,11 +19,11 @@ const RequestTable = ({ myRequests }) => {
         <tbody>
           {/* table row */}
           {myRequests.map((request, index) => (
-            <RequestTableRow
+            <VolunteerReqTableRow
               key={request._id}
               request={request}
               index={index}
-            ></RequestTableRow>
+            ></VolunteerReqTableRow>
           ))}
         </tbody>
       </table>
@@ -31,4 +31,4 @@ const RequestTable = ({ myRequests }) => {
   );
 };
 
-export default RequestTable;
+export default VolunteerRequestTable;

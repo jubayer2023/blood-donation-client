@@ -1,11 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import DashHeading from "../DashHeading";
 import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
-import EmptyState from "../../../components/Shared/EmptyState";
-import RequestTable from "../../../components/Dashboard/Donor/RequestTable";
 import Loader from "../../../components/Shared/Loader";
 import { useSearchParams } from "react-router-dom";
 import useReqVolunteer from "../../../hooks/useReqVolunteer";
+import VolunteerRequestTable from "../../../components/Dashboard/Volunteer/VolunteerRequestTable";
 
 const filterOptions = ["pending", "inprogress", "done", "cancelled"];
 
@@ -42,7 +41,7 @@ const AllRequests = () => {
       </div>
       {/* table  */}
 
-      {allRequest && <RequestTable myRequests={allRequest}></RequestTable>}
+      {allRequest && <VolunteerRequestTable myRequests={allRequest}></VolunteerRequestTable>}
     </>
   );
 };

@@ -6,6 +6,7 @@ import useBlogs from "../../../hooks/useBlogs";
 const BlogContent = () => {
   const { user } = useAuth();
   const [blogs] = useBlogs();
+  
   return (
     <div className="px-10">
       <div className="flex justify-between items-center bg-base-100 px-3 py-5 rounded-md">

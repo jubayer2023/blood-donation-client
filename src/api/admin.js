@@ -39,6 +39,6 @@ export const saveBlogContent = async (blog) => {
 
 // get blogs
 export const getBlogContent = async () => {
-    const { data } = await axiosPublic.get('/blog-content');
+    const { data } = await axiosSecure.get('/blog-content');
     return data;
 }

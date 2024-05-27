@@ -1,28 +1,23 @@
-import useAuth from "../../../hooks/useAuth";
-import { Link } from "react-router-dom";
-import useMyRequsets from "../../../hooks/useMyRequsets";
-import { deleteRequest, updateStatus } from "../../../api/crud";
 import toast from "react-hot-toast";
-import Swal from "sweetalert2";
-import useRecentRequest from "../../../hooks/useRecentRequest";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
-import useAllRequests from "../../../hooks/useAllRequests";
+import useRole from "../../../hooks/useRole";
+import { updateVolunterDonation } from "../../../api/volunteer";
+import useReqVolunteer from "../../../hooks/useReqVolunteer";
 
-const RequestTableRow = ({ request, index }) => {
+const VolunteerReqTableRow = ({ request, index }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [role] = useRole();
   const { user } = useAuth();
-  const [, , refetchMyRequests] = useMyRequsets();
-  const [, , recentRequestsRefetch] = useRecentRequest();
-  const [, , refetchAllRequests] = useAllRequests();
+  const [, , refetchRequests] = useReqVolunteer();
 
   const handleUpdateDoneStatus = async (id) => {
     try {
-      await updateStatus(id, { status: "done" });
+      await updateVolunterDonation(id, { status: "done" });
       toast.success("Done Status updated successfully");
-      refetchMyRequests();
-      recentRequestsRefetch();
-      refetchAllRequests();
+      refetchRequests();
     } catch (error) {
       console.log("Update Done error :", error.message);
       toast.error("Done Status Update Error");
@@ -32,46 +27,17 @@ const RequestTableRow = ({ request, index }) => {
   // handle cancel status
   const handleUpdateCancelStatus = async (id) => {
     try {
-      await updateStatus(id, { status: "cancelled" });
+      await updateVolunterDonation(id, { status: "cancelled" });
       toast.success("Ccancel Status updated successfully");
-      refetchMyRequests();
-      recentRequestsRefetch();
-      refetchAllRequests();
     } catch (error) {
       console.log("Update cancel error :", error.message);
       toast.error("Cancel Status Update Error");
-    }
-  };
-
-  const handleDeleteRequest = (id) => {
-    try {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const data = await deleteRequest(id);
-          if (data?.deletedCount > 0) {
-            toast.success("Request Deleted successfully");
-            refetchMyRequests();
-            recentRequestsRefetch();
-            refetchAllRequests();
-          }
-        }
-      });
-    } catch (error) {
-      console.log("Update cancel error :", error.message);
-      toast.error("Cancel Status Update Error");
+      refetchRequests();
     }
   };
 
   return (
-    <tr className="bg-slate-400 relative">
+    <tr className="bg-slate-400">
       <td className="font-semibold">{index + 1}</td>
       <td className="font-semibold">{request.recipient_name}</td>
       <td className="">
@@ -107,8 +73,9 @@ const RequestTableRow = ({ request, index }) => {
           </p>
         )}
       </td>
-      <td className="">
+      <td className=" flex items-center justify-center relative">
         <button
+          disabled={role === "volunteer"}
           onClick={() => setIsOpen(!isOpen)}
           onBlur={() => setIsOpen(false)}
           className="cursor-pointer btn btn-sm bg-rose-300 transition "
@@ -117,25 +84,22 @@ const RequestTableRow = ({ request, index }) => {
         </button>
         <ul
           tabIndex={0}
-          className={`absolute -z-10 top-[84px] right-[20px] md:right-[20px]  menu p-3 flex flex-col gap-0 shadow-md bg-neutral-300 rounded-box w-36  transform ${
+          className={`absolute -z-10 top-[50px] right-[20px] md:right-[20px]  menu p-3 flex flex-col gap-0 shadow-md bg-neutral-300 rounded-box w-36  transform ${
             isOpen
               ? "z-10  transition-all delay-100 ease-linear "
               : "  transition-all delay-150 ease-linear"
           }`}
         >
           <Link to={`/dashboard/update-requests/${request._id}`}>
-            <p className="flex justify-center items-center text-sm rounded-t-md bg-slate-900 border-b-[1px] border-gray-500 px-3 py-2 text-amber-700 cursor-pointer hover:bg-base-100 hover:text-black">
+            <p className="flex justify-center items-center text-xl rounded-t-md bg-slate-900 border-b-[1px] border-gray-500 px-3 py-2 text-amber-700 cursor-pointer hover:bg-base-100 hover:text-black">
               Edit
             </p>
           </Link>
-          <p
-            onClick={() => handleDeleteRequest(request?._id)}
-            className="flex justify-center items-center text-sm bg-slate-900 px-3 py-2 border-b-[1px] border-gray-500 text-amber-700 hover:bg-red-700 hover:text-white cursor-pointer"
-          >
+          <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 border-b-[1px] border-gray-500 text-amber-700 hover:bg-red-700 hover:text-white cursor-pointer">
             Delete
           </p>
           <Link to={`/donation-details/${request?._id}`}>
-            <p className="flex justify-center items-center text-sm bg-slate-900 px-3 py-2 rounded-b-md text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
+            <p className="flex justify-center items-center text-xl bg-slate-900 px-3 py-2 rounded-b-md text-amber-700 cursor-pointer hover:bg-neutral-100 hover:text-black">
               Details
             </p>
           </Link>
@@ -145,4 +109,4 @@ const RequestTableRow = ({ request, index }) => {
   );
 };
 
-export default RequestTableRow;
+export default VolunteerReqTableRow;

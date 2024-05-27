@@ -1,17 +1,15 @@
 import { Navigate, useLocation } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import useRole from "../hooks/useRole";
 import Loader from "../components/Shared/Loader";
 
 const AdminRoute = ({ children }) => {
   const location = useLocation();
-  const { user, loading } = useAuth();
-  const [role] = useRole();
+  const [role, isLoading] = useRole();
 
-  if (loading) {
+  if (isLoading) {
     return <Loader></Loader>;
   }
-  if (!user && role !== "admin") {
+  if ( role !== "admin") {
     return <Navigate to={"/login"} state={{ from: location }} replace />;
   }
 

@@ -16,7 +16,7 @@ const CommonBlogRoute = () => {
   if (role === "volunteer") {
     return (
       <VolunteerRoute>
-        <AddBlogVolunteer />
+        <AddBlog />
       </VolunteerRoute>
     );
   }

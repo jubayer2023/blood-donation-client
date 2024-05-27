@@ -35,6 +35,7 @@ const AddBlog = () => {
         title: data?.title,
         photo_url,
         content: sanitizedContent,
+        status: 'draft',
       };
       // console.log(blog);
       const resBlog = await saveBlogContent(blog);
