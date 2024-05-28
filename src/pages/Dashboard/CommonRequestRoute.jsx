@@ -1,7 +1,7 @@
-import AllDonationRequest from "../../components/Dashboard/Admin/AllDonationRequest";
 import useRole from "../../hooks/useRole";
 import AdminRoute from "../../routes/AdminRoute";
 import VolunteerRoute from "../../routes/VolunteerRoute";
+import AdminAllRequest from "./Admin/AdminAllRequest";
 import AllRequests from "./Volunteer/AllRequests";
 
 const CommonRequestRoute = () => {
@@ -10,7 +10,7 @@ const CommonRequestRoute = () => {
   if (role === "admin") {
     return (
       <AdminRoute>
-        <AllDonationRequest />
+        <AdminAllRequest />
       </AdminRoute>
     );
   }

@@ -1,25 +1,26 @@
+import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
-import { Link } from "react-router-dom";
 import useMyRequsets from "../../../hooks/useMyRequsets";
+import useRecentRequest from "../../../hooks/useRecentRequest";
+import useAllRequests from "../../../hooks/useAllRequests";
 import { deleteRequest, updateStatus } from "../../../api/crud";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import useRecentRequest from "../../../hooks/useRecentRequest";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const RequestTableRow = ({ request, index }) => {
+const AdminReqTableRow = ({ request, index }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
   const [, , refetchMyRequests] = useMyRequsets();
   const [, , recentRequestsRefetch] = useRecentRequest();
+  const [, , refetchAllRequests] = useAllRequests();
 
   const handleUpdateDoneStatus = async (id) => {
     try {
       await updateStatus(id, { status: "done" });
       toast.success("Done Status updated successfully");
-      refetchMyRequests();
-      recentRequestsRefetch();
+      refetchAllRequests();
     } catch (error) {
       console.log("Update Done error :", error.message);
       toast.error("Done Status Update Error");
@@ -31,8 +32,7 @@ const RequestTableRow = ({ request, index }) => {
     try {
       await updateStatus(id, { status: "cancelled" });
       toast.success("Ccancel Status updated successfully");
-      refetchMyRequests();
-      recentRequestsRefetch();
+      refetchAllRequests();
     } catch (error) {
       console.log("Update cancel error :", error.message);
       toast.error("Cancel Status Update Error");
@@ -56,6 +56,7 @@ const RequestTableRow = ({ request, index }) => {
             toast.success("Request Deleted successfully");
             refetchMyRequests();
             recentRequestsRefetch();
+            refetchAllRequests();
           }
         }
       });
@@ -140,4 +141,4 @@ const RequestTableRow = ({ request, index }) => {
   );
 };
 
-export default RequestTableRow;
+export default AdminReqTableRow;
