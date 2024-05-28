@@ -42,3 +42,18 @@ export const getBlogContent = async () => {
     const { data } = await axiosSecure.get('/blog-content');
     return data;
 }
+
+// delete
+export const deleteBlog = async (id) => {
+    const { data } = await axiosSecure.delete(`/blogs/${id}`);
+    // console.log(data);
+    return data;
+}
+
+// update donation status
+export const updateBlogStatus = async (id, status) => {
+
+    const { data } = await axiosSecure.put(`/blogs/${id}`, { status });
+    // console.log(data);
+    return data;
+}

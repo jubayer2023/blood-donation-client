@@ -20,6 +20,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import CommonBlogContent from "../pages/Dashboard/CommonBlogContent/CommonBlogContent";
 import CommonBlogRoute from "../pages/Dashboard/CoomonAddBlogRoute/CoomonAddBlogRoute";
 import CommonRequestRoute from "../pages/Dashboard/CommonRequestRoute";
+import PublishedBlogs from "../pages/PublishedBlogs/PublishedBlogs";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
       },
       { path: "/donation-requests", element: <DonationRequests /> },
       { path: "/search-donors", element: <SearchPage /> },
+      { path: "/blogs", element: <PublishedBlogs /> },
       {
         path: "/donation-details/:id",
         element: (
@@ -109,7 +111,7 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      
+
       // volunteer routes
     ],
   },

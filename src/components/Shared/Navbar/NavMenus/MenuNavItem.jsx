@@ -42,9 +42,9 @@ const MenuNavItems = () => {
             ? "bg-slate-800 text-amber-700 font-serif px-4 py-1  rounded-md transition ease-in-out"
             : "px-4 py-1 text-gray-800 border-b-[1px] lg:border-b-0 border-neutral-600 hover:bg-red-500 hover:text-neutral-50 rounded-md font-serif text-sm"
         }
-        to={"/blog"}
+        to={"/blogs"}
       >
-        Blog
+        Blogs
       </NavLink>
       {user ? (
         ""

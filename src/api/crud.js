@@ -72,3 +72,10 @@ export const updateRequestData = async (id, updateData) => {
 }
 
 
+// get public blogs
+export const getPulishedBlogs = async () => {
+    const { data } = await axiosPublic.get('/published-blogs');
+    return data;
+}
+
+

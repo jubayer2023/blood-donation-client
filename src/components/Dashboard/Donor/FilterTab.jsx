@@ -26,7 +26,7 @@ const FilterTab = ({ status, selected, address }) => {
       role=""
       className={` tab border-[1px] border-gray-600 capitalize transition font-serif  ${
         selected
-          ? "bg-slate-800 text-amber-700 font-semibold shadow-lg shadow-slate-500 rounded-sm delay-200 ease-linear"
+          ? "bg-slate-800 text-amber-700 font-semibold shadow-lg shadow-slate-500  delay-200 ease-linear"
           : ""
       }`}
     >
