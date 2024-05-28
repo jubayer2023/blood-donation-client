@@ -1,4 +1,4 @@
-import { axiosPublic, axiosSecure } from "./axiosBaseURL"
+import { axiosSecure } from "./axiosBaseURL"
 
 // get users-count
 export const getUsersCount = async () => {

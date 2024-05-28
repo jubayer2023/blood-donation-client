@@ -46,7 +46,14 @@ export const router = createBrowserRouter([
           // await axiosSecure.get(`/request-details/${params.id}`),
           await getSingleRequest(params.id),
       },
-      { path: "/fundings", element: <Funding /> },
+      {
+        path: "/fundings",
+        element: (
+          <PrivateRoute>
+            <Funding />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   { path: "/login", element: <Login /> },
