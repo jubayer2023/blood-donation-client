@@ -78,10 +78,11 @@ const SignUp = () => {
       setLoading(false);
       navigate(from, { replace: true });
 
-      window.location.reload(from);
+      // window.location.reload(from);
     } catch (error) {
       console.log("ERROR FROM SIGNUP : ", error);
       toast.error("ERROR FROM SIGNUP");
+    } finally {
       setLoading(false);
       setPasswordError(null);
     }

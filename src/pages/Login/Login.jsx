@@ -31,10 +31,11 @@ const Login = () => {
       setLoading(false);
 
       navigate(from, { replace: true });
-      window.location.reload(from);
+      // window.location.reload(from);
     } catch (error) {
       console.log(error);
       toast.error("Error from Login function");
+    } finally {
       setLoading(false);
     }
   };
