@@ -1,9 +1,19 @@
+import AdminStatistics from "../../../components/Dashboard/Statistics/Admin/AdminStatistic";
+import useAuth from "../../../hooks/useAuth";
+import DashHeading from "../DashHeading";
+
 const AdminHome = () => {
+  const { user } = useAuth();
   return (
     <div className="">
-      <h3 className="text-amber-500 text-3xl text-center">
-        Wllcome to Admin Home !!!
-      </h3>
+      <DashHeading
+        title={`Wellcome to Admin home`}
+        name={user?.displayName}
+        hifen={"-"}
+      />
+      <div>
+        <AdminStatistics/>
+      </div>
     </div>
   );
 };

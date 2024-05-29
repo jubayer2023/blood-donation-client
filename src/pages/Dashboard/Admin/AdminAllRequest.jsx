@@ -2,15 +2,15 @@ import { Helmet } from "react-helmet-async";
 import DashHeading from "../DashHeading";
 import Loader from "../../../components/Shared/Loader";
 import { useSearchParams } from "react-router-dom";
-import useReqVolunteer from "../../../hooks/useReqVolunteer";
 import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
 import AdminRequestTable from "../../../components/Dashboard/Admin/AdminRequestTable";
+import useAllRequests from "../../../hooks/useAllRequests";
 
 const filterOptions = ["pending", "inprogress", "done", "cancelled"];
 
 const AdminAllRequest = () => {
-  const [allRequest, isLoading] = useReqVolunteer();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [allRequest, isLoading] = useAllRequests();
+  const [searchParams, ] = useSearchParams();
 
   const queryStatus = searchParams.get("status");
   //   console.log(allRequest);

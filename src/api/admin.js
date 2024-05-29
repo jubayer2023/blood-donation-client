@@ -57,3 +57,9 @@ export const updateBlogStatus = async (id, status) => {
     // console.log(data);
     return data;
 }
+
+// get admin stats
+export const getAdminStats = async () => {
+    const { data } = await axiosSecure.get('/admin-stats');
+    return data;
+}
