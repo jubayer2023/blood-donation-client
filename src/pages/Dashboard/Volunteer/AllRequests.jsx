@@ -10,14 +10,10 @@ const filterOptions = ["pending", "inprogress", "done", "cancelled"];
 
 const AllRequests = () => {
   const [allRequest, isLoading] = useReqVolunteer();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const queryStatus = searchParams.get("status");
   //   console.log(allRequest);
-
-  if (isLoading) {
-    return <Loader></Loader>;
-  }
 
   return (
     <>
@@ -40,8 +36,15 @@ const AllRequests = () => {
         </div>
       </div>
       {/* table  */}
-
-      {allRequest && <VolunteerRequestTable myRequests={allRequest}></VolunteerRequestTable>}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        allRequest && (
+          <VolunteerRequestTable
+            myRequests={allRequest}
+          ></VolunteerRequestTable>
+        )
+      )}
     </>
   );
 };

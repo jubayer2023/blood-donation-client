@@ -1,9 +1,19 @@
+import VolunteerStatistic from "../../../components/Dashboard/Statistics/Volunteer/VolunteerStatistic";
+import useAuth from "../../../hooks/useAuth";
+import DashHeading from "../DashHeading";
+
 const VolunteerHome = () => {
+  const { user } = useAuth();
   return (
-    <div className="min-h-screen">
-      <h3 className="text-amber-500 text-3xl text-center">
-        Wllcome to Volunteer Home !!!
-      </h3>
+    <div className="">
+      <DashHeading
+        title={`Wellcome to Admin home`}
+        name={user?.displayName}
+        hifen={"-"}
+      />
+      <div>
+        <VolunteerStatistic />
+      </div>
     </div>
   );
 };

@@ -1,20 +1,19 @@
-import { FaUserAlt, FaDollarSign } from "react-icons/fa";
-import { GiPresent } from "react-icons/gi";
 import { useQuery } from "@tanstack/react-query";
-import { getAdminStats } from "../../../../api/admin";
+import { getVolunteerStats } from "../../../../api/volunteer";
+import { FaDollarSign, FaUserAlt } from "react-icons/fa";
+import { GiPresent } from "react-icons/gi";
 import SalesLineChart from "../SalesLineChart";
 import PieChartComponent from "../PieChartComponent";
-// import { getAdminStat } from "../../../../api/utils";
 
-const AdminStatistics = () => {
+const VolunteerStatistic = () => {
   const { data: stats = {} } = useQuery({
     queryKey: ["statData"],
     queryFn: async () => {
-      const data = await getAdminStats();
+      const data = await getVolunteerStats();
       return data;
     },
   });
-  // console.log(stats);
+
   return (
     <div>
       <div className="mt-12">
@@ -85,4 +84,4 @@ const AdminStatistics = () => {
   );
 };
 
-export default AdminStatistics;
+export default VolunteerStatistic;

@@ -15,5 +15,12 @@ export const updateVolunterDonation = async (id, status) => {
 }
 
 
+// volunteer-stats
+export const getVolunteerStats = async () => {
+    const { data } = await axiosSecure.get('/volunteer-stats');
+    return data;
+}
+
+
 
 
