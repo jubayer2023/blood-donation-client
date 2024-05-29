@@ -31,3 +31,20 @@ export const clearCookie = async () => {
     const { data } = await axiosSecure.get('/logout');
     return data;
 };
+
+// get single users
+export const getSingleUser = async (email) => {
+    const { data } = await axiosSecure.get(`/users/${email}`);
+    return data;
+}
+// get single users by id
+export const getSingleUserById = async (id) => {
+    const { data } = await axiosSecure.get(`/users-detail/${id}`);
+    return data;
+}
+
+// update-user data
+export const updateUserData = async (id, userInfo) => {
+    const { data } = await axiosSecure.put(`/update-user/${id}`, userInfo);
+    return data;
+}

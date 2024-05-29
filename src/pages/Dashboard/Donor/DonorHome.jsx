@@ -5,16 +5,28 @@ import Loader from "../../../components/Shared/Loader";
 import useAuth from "../../../hooks/useAuth";
 import useRecentRequest from "../../../hooks/useRecentRequest";
 import DashHeading from "../DashHeading";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const DonorHome = () => {
   const { user } = useAuth();
   const [recentRequests, isLoading] = useRecentRequest();
 
+  useEffect(() => {
+    toast.success(`Wellcome to dashboard ${user?.displayName}`);
+  }, [user]);
+
   if (isLoading) {
     return <Loader></Loader>;
   }
+
   return (
     <div className="">
+      <Helmet>
+        <title> Dashborad</title>
+      </Helmet>
+
       <DashHeading
         title={`Wellcome to donor home`}
         name={user?.displayName}

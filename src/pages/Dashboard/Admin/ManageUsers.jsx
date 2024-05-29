@@ -6,6 +6,7 @@ import DashHeading from "../DashHeading";
 import useUsersCount from "../../../hooks/useUsersCount";
 import { useState } from "react";
 import Pagination from "../../DonationRequests/Pagination";
+import { Helmet } from "react-helmet-async";
 
 const filterStatus = ["active", "blocked"];
 
@@ -42,9 +43,11 @@ const ManageUsers = () => {
     }
   };
 
- 
   return (
     <div className="">
+      <Helmet>
+        <title> Dashborad | manage-users</title>
+      </Helmet>
       {/* heading */}
       <DashHeading title={"See All Users"}></DashHeading>
       {/* filter options */}

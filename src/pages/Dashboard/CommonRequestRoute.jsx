@@ -6,7 +6,7 @@ import AllRequests from "./Volunteer/AllRequests";
 
 const CommonRequestRoute = () => {
   const [role] = useRole();
-  console.log(role);
+  // console.log(role);
   if (role === "admin") {
     return (
       <AdminRoute>

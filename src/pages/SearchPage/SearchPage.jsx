@@ -8,6 +8,7 @@ import { getSearchDonors } from "../../api/crud";
 import Container from "../../components/Shared/Container";
 import SearchCard from "./SearchCard";
 import useDonors from "../../hooks/useDonors";
+import { Helmet } from "react-helmet-async";
 
 const SearchPage = () => {
   const [districts] = useDistricts();
@@ -47,6 +48,9 @@ const SearchPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Blood Donations | search-donors</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center">
         <div className="shadow-xlmy-12  md:mx-auto p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
           <div className="mb-8 text-center">

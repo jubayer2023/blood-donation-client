@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import CommonForm from "../../../components/Dashboard/Form/CommonForm";
 import { saveReuestsToDB } from "../../../api/crud";
 import useMyRequsets from "../../../hooks/useMyRequsets";
+import { Helmet } from "react-helmet-async";
 
 const CreateRequests = () => {
   const [loading, setLoading] = useState(false);
@@ -72,6 +73,10 @@ const CreateRequests = () => {
 
   return (
     <div>
+      <Helmet>
+        <title> Dashborad | create-request</title>
+      </Helmet>
+
       <DashHeading
         title={"Create Donation Requests"}
         subtitle={"Wellcome to blood donations"}

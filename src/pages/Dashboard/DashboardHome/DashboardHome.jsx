@@ -7,7 +7,9 @@ import VolunteerHome from "../Volunteer/VolunteerHome";
 
 const DashboardHome = () => {
   const [role] = useRole();
-  console.log(role);
+  // console.log(role);
+
+  
 
   if (role === "admin") {
     return (

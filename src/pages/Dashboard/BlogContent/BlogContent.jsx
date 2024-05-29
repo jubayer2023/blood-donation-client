@@ -6,6 +6,7 @@ import { deleteBlog, updateBlogStatus } from "../../../api/admin";
 import toast from "react-hot-toast";
 import FilterTab from "../../../components/Dashboard/Donor/FilterTab";
 import Loader from "../../../components/Shared/Loader";
+import { Helmet } from "react-helmet-async";
 const filterOptions = ["draft", "published"];
 
 const BlogContent = () => {
@@ -53,6 +54,9 @@ const BlogContent = () => {
 
   return (
     <div className="px-10">
+     <Helmet>
+        <title> Dashborad | manage-content</title>
+      </Helmet>
       <div className="flex justify-between items-center bg-base-100 px-3 py-5 rounded-md">
         <h3 className="font-bold text-xl font-mono capitalize text-red-400">
           Wellcome <span className="text-green-700">{user?.displayName}</span>

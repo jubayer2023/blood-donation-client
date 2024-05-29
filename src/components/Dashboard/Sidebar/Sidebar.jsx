@@ -86,11 +86,7 @@ const Sidebar = () => {
         <div>
           <hr />
 
-          <MenuItem
-            icon={FcSettings}
-            label="Profile"
-            address="/dashboard/profile"
-          />
+          <MenuItem icon={FcSettings} label="Profile" address="profile" />
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-3 rounded-sm bg-neutral-300 hover:bg-red-600   hover:text-neutral-50 transition-colors duration-300 transform"

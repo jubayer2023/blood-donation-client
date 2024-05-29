@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { IoSyncCircleOutline } from "react-icons/io5";
 import { useState } from "react";
 import { setCookie } from "../../api/auth";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,10 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-rose-300 to-red-300 flex flex-col items-center justify-center">
+      <Helmet>
+        <title> Dashborad | Login</title>
+      </Helmet>
+
       <div className="shadow-xl shadow-rose-700 w-4/5 md:w-3/4 lg:max-w-screen-md my-12  md:mx-auto p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Log In</h1>

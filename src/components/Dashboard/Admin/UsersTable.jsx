@@ -10,6 +10,7 @@ const UsersTable = ({
   isLoading,
   refetchUsers,
 }) => {
+  // console.log(users);
   const startIndex = (parseInt(currentPage) - 1) * itemPerPage;
   // make admin
   const handleAdmin = async (id) => {

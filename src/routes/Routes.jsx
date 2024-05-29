@@ -21,6 +21,9 @@ import CommonBlogContent from "../pages/Dashboard/CommonBlogContent/CommonBlogCo
 import CommonBlogRoute from "../pages/Dashboard/CoomonAddBlogRoute/CoomonAddBlogRoute";
 import CommonRequestRoute from "../pages/Dashboard/CommonRequestRoute";
 import PublishedBlogs from "../pages/PublishedBlogs/PublishedBlogs";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
+import { getSingleUserById } from "../api/auth";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +85,23 @@ export const router = createBrowserRouter([
       {
         path: "content-management/add-blog",
         element: <CommonBlogRoute />,
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile/update-profile/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => await getSingleUserById(params.id),
       },
       // donor rooutes
       {

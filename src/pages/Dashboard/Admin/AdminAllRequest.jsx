@@ -22,7 +22,7 @@ const AdminAllRequest = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard | All Donation Requests</title>
+        <title>Dashboard | all-requests</title>
       </Helmet>
       {/* heading */}
       <DashHeading title={"All Blood Donation Requests"}></DashHeading>
