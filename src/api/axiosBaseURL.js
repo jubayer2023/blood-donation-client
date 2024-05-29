@@ -2,10 +2,10 @@ import axios from "axios";
 import { clearCookie } from "./auth";
 
 export const axiosPublic = axios.create({
-    baseURL: `${import.meta.env.VITE_AXIOS_BASE_URL}`,
+    baseURL: `https://blood-donation-server-teal.vercel.app`,
 });
 export const axiosSecure = axios.create({
-    baseURL: `${import.meta.env.VITE_AXIOS_BASE_URL}`,
+    baseURL: `https://blood-donation-server-teal.vercel.app`,
     withCredentials: true,
 });
 
